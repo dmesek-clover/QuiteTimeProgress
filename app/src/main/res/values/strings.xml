@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">CustomProgressBar</string>
+    <string name="stats">Stats</string>
+    <string name="max_progress_today">of %dm</string>
+</resources>

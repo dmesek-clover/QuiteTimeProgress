@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_margin="5dp"
+    android:id="@+id/quite_time_placeholder"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="10dp"
+        android:background="#ababab"
+        app:layout_constraintBottom_toBottomOf="@+id/button"
+        app:layout_constraintEnd_toStartOf="@+id/button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/button" />
+
+    <TextView
+        android:id="@+id/button"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/button_background"
+        android:textAllCaps="false"
+        android:text="@string/stats"
+        android:gravity="center"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="15dp"
+        android:background="#ababab"
+        app:layout_constraintBottom_toBottomOf="@+id/button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/button"
+        app:layout_constraintTop_toTopOf="@+id/button" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Your Quite Time stats"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button" />
+
+
+    <include
+        android:id="@+id/pb_quite_time_today"
+        layout="@layout/quite_time_today_progress_bar"
+        android:layout_height="200dp"
+        android:layout_width="200dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="55dp"
+        android:layout_marginEnd="45dp"
+        android:layout_marginBottom="55dp"
+        android:orientation="vertical"
+        android:weightSum="4"
+        app:layout_constraintBottom_toBottomOf="@+id/pb_quite_time_today"
+        app:layout_constraintEnd_toEndOf="@+id/pb_quite_time_today"
+        app:layout_constraintStart_toStartOf="@+id/pb_quite_time_today"
+        app:layout_constraintTop_toTopOf="@+id/pb_quite_time_today">
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="TODAY"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_today_progress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="0m"
+            android:textColor="#000000"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_max_progress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/max_progress_today"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:weightSum="7"
+
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pb_quite_time_today">
+
+        <include
+            android:layout_weight="1"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:id="@+id/pb_quite_time_first"
+            layout="@layout/quite_time_week_progress_bar"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            />
+        <include
+            android:layout_weight="1"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:id="@+id/pb_quite_time_second"
+            layout="@layout/quite_time_week_progress_bar"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            />
+        <include
+            android:layout_weight="1"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:id="@+id/pb_quite_time_third"
+            layout="@layout/quite_time_week_progress_bar"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            />
+        <include
+            android:layout_weight="1"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:id="@+id/pb_quite_time_fourth"
+            layout="@layout/quite_time_week_progress_bar"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            />
+        <include
+            android:layout_weight="1"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:id="@+id/pb_quite_time_fifth"
+            layout="@layout/quite_time_week_progress_bar"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            />
+        <include
+            android:layout_weight="1"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:id="@+id/pb_quite_time_sixth"
+            layout="@layout/quite_time_week_progress_bar"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            />
+        <include
+            android:layout_weight="1"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:id="@+id/pb_quite_time_seventh"
+            layout="@layout/quite_time_week_progress_bar"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            />
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

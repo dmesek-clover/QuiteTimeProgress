@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ProgressBar
+        android:id="@+id/pb_quite_time_week"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/circle_shape_thin"
+        android:indeterminate="false"
+        android:max="100"
+        android:progress="50"
+        android:progressDrawable="@drawable/circual_progress_bar_thin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_day_of_week"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="S"
+        app:layout_constraintBottom_toBottomOf="@+id/pb_quite_time_week"
+        app:layout_constraintEnd_toEndOf="@+id/pb_quite_time_week"
+        app:layout_constraintStart_toStartOf="@+id/pb_quite_time_week"
+        app:layout_constraintTop_toTopOf="@+id/pb_quite_time_week" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

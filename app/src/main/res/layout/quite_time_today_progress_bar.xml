@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ProgressBar android:id="@+id/pb_quite_time_week"
+    style="?android:attr/progressBarStyleHorizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginStart="10dp"
+    android:layout_marginTop="30dp"
+    android:layout_marginEnd="10dp"
+    android:background="@drawable/circle_shape_fat"
+    android:indeterminate="false"
+    android:max="100"
+    android:progress="0"
+    android:progressDrawable="@drawable/circual_progress_bar_fat"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+     />
