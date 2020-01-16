@@ -3,9 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="ring"
     android:innerRadiusRatio="2.5"
-    android:thickness="3dp"
+    android:thickness="4dp"
     android:useLevel="false">
 
-    <solid android:color="#ababab" />
+    <solid android:color="#E5E5E5" />
 
 </shape>

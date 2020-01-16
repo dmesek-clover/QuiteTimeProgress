@@ -23,13 +23,13 @@ public class QuiteTimeStats extends ConstraintLayout {
     private static final int NUMBER_OF_DAYS_IN_WEEK = 7;
     private static final int DEFAULT_MAX = 120;
     private static final int DEFAULT_PROGRESS = 0;
-    private static final int animationDuration = 800; //ms
+    private static int animationDuration = 2000; //ms changed after first animation to 700ms
 
     private List<QuiteTimeModel> previousWeekQuiteTime;
-    private int todayQuiteTimeProgress = 0;
-    private int todayIncrementProgress = 0;
+    private int todayQuiteTimeProgress;
+    private int todayIncrementProgress;
     private DayOfWeek todayDayOfWeek;
-    private int todayMaxProgress = 0;
+    private int todayMaxProgress = DEFAULT_MAX;
 
     private ProgressBar todayProgressBar;
     private TextView todayProgressText;
@@ -62,11 +62,11 @@ public class QuiteTimeStats extends ConstraintLayout {
 
     public void setTodayDayOfWeek(DayOfWeek todayDayOfWeek) {
         this.todayDayOfWeek = todayDayOfWeek;
+        initializeTodayData();
     }
 
     public void setTodayMaxProgress(int todayMaxProgress) {
         this.todayMaxProgress = todayMaxProgress;
-        initializeTodayData();
     }
 
     public void setPreviousWeekQuiteTime(List<QuiteTimeModel> previousWeekQuiteTime) {
@@ -74,14 +74,15 @@ public class QuiteTimeStats extends ConstraintLayout {
         initializePreviousWeekData();
     }
 
-    public void updateProgress(final int progress) {
+    public void updateTodayProgress(final int progress) {
         ObjectAnimator objectAnimator = ObjectAnimator.ofInt(this,
                 "todayIncrementProgress", todayQuiteTimeProgress, progress);
         objectAnimator.setDuration(animationDuration);
         objectAnimator.setInterpolator(new DecelerateInterpolator());
         objectAnimator.start();
-        invalidate();
+        animationDuration = 700;
     }
+
 
     private void initializeTodayData() {
         todayProgressBar.setMax(todayMaxProgress);
@@ -102,15 +103,15 @@ public class QuiteTimeStats extends ConstraintLayout {
     }
 
     private void initializePreviousWeekData() {
-        if(previousWeekQuiteTime == null) {
+        if (previousWeekQuiteTime == null) {
             previousWeekQuiteTime = new ArrayList<>();
         }
-        if(previousWeekQuiteTime.size() > NUMBER_OF_DAYS_IN_WEEK) {
+        if (previousWeekQuiteTime.size() > NUMBER_OF_DAYS_IN_WEEK) {
             throw new IllegalArgumentException("previousWeekQuiteTime list should contain at most " + NUMBER_OF_DAYS_IN_WEEK + " items.");
         }
-        if(todayDayOfWeek == null || todayMaxProgress == 0) {
-            throw new IllegalStateException("Please call setTodayDayOfWeek(DayOfWeek dayOfWeek) and setTodayMaxProgress(int todayMaxProgress)" +
-                    " before calling setPreviousWeekQuiteTime.");
+        if (todayDayOfWeek == null) {
+            throw new IllegalStateException("Please call setTodayDayOfWeek(DayOfWeek dayOfWeek)" +
+                    " before calling setPreviousWeekQuiteTime method.");
         }
 
         setDataForProgressBars();
@@ -119,26 +120,29 @@ public class QuiteTimeStats extends ConstraintLayout {
     private void setDataForProgressBars() {
         DayOfWeek currentDayOfWeek = todayDayOfWeek;
         QuiteTimeModel quiteTime;
-        for(int index = 0; index < NUMBER_OF_DAYS_IN_WEEK; index++) {
-            if(index >= previousWeekQuiteTime.size()) {
-                quiteTime = createQuiteTimeBefore(currentDayOfWeek);
+        for (int index = 0; index < NUMBER_OF_DAYS_IN_WEEK; index++) {
+            DayOfWeek previousDayOfWeek = getDayOfWeekBefore(currentDayOfWeek);
+            if (index >= previousWeekQuiteTime.size()) {
+                quiteTime = new QuiteTimeModel(DEFAULT_MAX, DEFAULT_PROGRESS, previousDayOfWeek);
             } else {
                 quiteTime = previousWeekQuiteTime.get(index);
+                quiteTime.setDayOfWeek(previousDayOfWeek);
             }
             currentDayOfWeek = quiteTime.getDayOfWeek();
             setData(previousWeekProgressBars.get(index), quiteTime);
         }
+        animateWeekProgress();
     }
 
-    private QuiteTimeModel createQuiteTimeBefore(DayOfWeek lastQuiteTimeDayOfWeek) {
+    private DayOfWeek getDayOfWeekBefore(DayOfWeek lastQuiteTimeDayOfWeek) {
         int dayIndex = daysOfWeek.indexOf(lastQuiteTimeDayOfWeek);
         DayOfWeek previousDayOfWeek;
         try {
             previousDayOfWeek = daysOfWeek.get(dayIndex - 1);
-        } catch(IndexOutOfBoundsException ex) {
+        } catch (IndexOutOfBoundsException ex) {
             previousDayOfWeek = daysOfWeek.get(NUMBER_OF_DAYS_IN_WEEK - 1);
         }
-        return new QuiteTimeModel(DEFAULT_MAX, DEFAULT_PROGRESS, previousDayOfWeek);
+        return previousDayOfWeek;
     }
 
     private void setData(ConstraintLayout progressBarLayout, QuiteTimeModel quiteTimeModel) {
@@ -146,12 +150,22 @@ public class QuiteTimeStats extends ConstraintLayout {
         final TextView label = progressBarLayout.findViewById(R.id.tv_day_of_week);
 
         progressBar.setMax(quiteTimeModel.getTotalAmount());
-        progressBar.setProgress(quiteTimeModel.getUsedAmount());
 
         DayOfWeek dayOfWeek = quiteTimeModel.getDayOfWeek();
-        label.setText(dayOfWeek != null ? dayOfWeek.getDescription() : "");
+        label.setText(dayOfWeek.getDescription());
     }
 
+    private void animateWeekProgress() {
+        List<ProgressBar> progressBars = new ArrayList<>();
+        for (ConstraintLayout historyProgressBar : previousWeekProgressBars) {
+            final ProgressBar progressBar = historyProgressBar.findViewById(R.id.pb_quite_time_week);
+            progressBars.add(progressBar);
+        }
+        new ProgressAnimator(progressBars, previousWeekQuiteTime).startAnimation();
+    }
+
+
+    //used by the ObjectAnimator
     private void setTodayIncrementProgress(int todayIncrementProgress) {
         this.todayIncrementProgress = todayIncrementProgress;
         updateTodayData();

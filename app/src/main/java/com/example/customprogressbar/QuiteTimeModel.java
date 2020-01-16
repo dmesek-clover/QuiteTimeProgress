@@ -2,13 +2,17 @@ package com.example.customprogressbar;
 
 public class QuiteTimeModel {
     private final int totalAmount;
-    private int usedAmount;
-    private final DayOfWeek dayOfWeek;
+    private final int usedAmount;
+    private DayOfWeek dayOfWeek;
 
     QuiteTimeModel(int totalAmount, int usedAmount, DayOfWeek dayOfWeek) {
         this.totalAmount = totalAmount;
         this.usedAmount = usedAmount;
         this.dayOfWeek = dayOfWeek;
+    }
+
+    QuiteTimeModel(int totalAmount, int usedAmount) {
+        this(totalAmount, usedAmount, null);
     }
 
     int getTotalAmount() {
@@ -23,7 +27,7 @@ public class QuiteTimeModel {
         return dayOfWeek;
     }
 
-    public void updateUsedAmount(int usedAmount) {
-        this.usedAmount = usedAmount;
+    public void setDayOfWeek(DayOfWeek dayOfWeek) {
+        this.dayOfWeek = dayOfWeek;
     }
 }
