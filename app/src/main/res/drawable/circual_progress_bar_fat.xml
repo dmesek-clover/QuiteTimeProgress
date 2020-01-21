@@ -8,13 +8,12 @@
         android:thickness="18dp"
         android:useLevel="true">
 
+
         <gradient
             android:angle="0"
             android:endColor="#51D2C7"
             android:startColor="#4EABC0"
             android:type="sweep"
             android:useLevel="false" />
-
-
     </shape>
 </rotate>

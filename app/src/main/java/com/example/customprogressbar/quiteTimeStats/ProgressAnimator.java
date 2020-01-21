@@ -1,4 +1,4 @@
-package com.example.customprogressbar;
+package com.example.customprogressbar.quiteTimeStats;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -9,20 +9,20 @@ import android.widget.ProgressBar;
 import java.util.ArrayList;
 import java.util.List;
 
-class ProgressAnimator {
+class ProgressAnimator{
 
     private final List<ProgressBar> progressBars;
     private final List<QuiteTimeModel> quiteTimeInfo;
     private final List<DayOfWeekProgress> progressAnimators = new ArrayList<>();
 
-    ProgressAnimator(List<ProgressBar> progressBars, List<QuiteTimeModel> quiteTimeInfo) {
+    public ProgressAnimator(List<ProgressBar> progressBars, List<QuiteTimeModel> quiteTimeInfo) {
         this.progressBars = progressBars;
         this.quiteTimeInfo = quiteTimeInfo;
         initializeProgressAnimators();
     }
 
     //start the chain reaction
-    void startAnimation() {
+    public void startAnimation() {
         if(!progressAnimators.isEmpty()) {
             progressAnimators.get(0).startAnimation();
         }
@@ -39,7 +39,7 @@ class ProgressAnimator {
         for(int animatorIndex = 0; animatorIndex < progressAnimators.size(); animatorIndex++) {
             try {
                 progressAnimators.get(animatorIndex).setNextAnimator(progressAnimators.get(animatorIndex+1));
-            }catch(IndexOutOfBoundsException ignore){}
+            }catch(IndexOutOfBoundsException ignore){ }
         }
     }
 
@@ -67,7 +67,7 @@ class ProgressAnimator {
         }
 
         @Override
-        public void onAnimationStart() {
+        public void onCustomStart() {
             objectAnimator.start();
         }
 
@@ -82,8 +82,7 @@ class ProgressAnimator {
         }
 
         private void initializeObjectAnimator(int progress) {
-            objectAnimator = ObjectAnimator.ofInt(this,
-                    "progress", progress);
+            objectAnimator = ObjectAnimator.ofInt(this, "progress", progress);
             objectAnimator.setDuration(animationDuration);
             objectAnimator.setInterpolator(new DecelerateInterpolator());
             objectAnimator.addListener(new AnimatorListenerAdapter() {
@@ -97,7 +96,7 @@ class ProgressAnimator {
                 public void onAnimationStart(Animator animation) {
                     super.onAnimationStart(animation);
                     if(nextProgressBar != null) {
-                        nextProgressBar.onAnimationStart();
+                        nextProgressBar.onCustomStart();
                     }
                 }
             });
@@ -107,5 +106,5 @@ class ProgressAnimator {
 }
 
 interface CustomAnimationListener {
-    void onAnimationStart();
+    void onCustomStart();
 }

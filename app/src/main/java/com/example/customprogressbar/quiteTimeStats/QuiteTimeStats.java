@@ -1,4 +1,4 @@
-package com.example.customprogressbar;
+package com.example.customprogressbar.quiteTimeStats;
 
 import android.animation.ObjectAnimator;
 import android.content.Context;
@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
+
+import com.example.customprogressbar.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -90,6 +92,7 @@ public class QuiteTimeStats extends ConstraintLayout {
         todayMaxProgressText.setText(String.format(placeholder, todayMaxProgress));
     }
 
+    //used by ObjectAnimator
     private void updateTodayData() {
         final int difference = todayIncrementProgress - todayQuiteTimeProgress;
         todayProgressBar.incrementProgressBy(difference);
@@ -131,6 +134,7 @@ public class QuiteTimeStats extends ConstraintLayout {
             currentDayOfWeek = quiteTime.getDayOfWeek();
             setData(previousWeekProgressBars.get(index), quiteTime);
         }
+
         animateWeekProgress();
     }
 
@@ -161,6 +165,7 @@ public class QuiteTimeStats extends ConstraintLayout {
             final ProgressBar progressBar = historyProgressBar.findViewById(R.id.pb_quite_time_week);
             progressBars.add(progressBar);
         }
+
         new ProgressAnimator(progressBars, previousWeekQuiteTime).startAnimation();
     }
 

@@ -1,4 +1,4 @@
-package com.example.customprogressbar;
+package com.example.customprogressbar.quiteTimeStats;
 
 public class QuiteTimeModel {
     private final int totalAmount;
@@ -11,7 +11,7 @@ public class QuiteTimeModel {
         this.dayOfWeek = dayOfWeek;
     }
 
-    QuiteTimeModel(int totalAmount, int usedAmount) {
+    public QuiteTimeModel(int totalAmount, int usedAmount) {
         this(totalAmount, usedAmount, null);
     }
 
