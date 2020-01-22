@@ -1,7 +1,6 @@
 package com.example.customprogressbar.remainingQuiteTime;
 
 import android.content.Context;
-import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +19,6 @@ import java.util.List;
 public class QuiteTimeRemainingAdapter extends RecyclerView.Adapter<QuiteTimeRemainingAdapter.ViewHolder>{
 
     private static final int rowHeight = 110;
-    private static final int millisInSecond = 1000;
 
     private final Context context;
     private List<QuiteTimeRemaining> quiteTimeRemainingList = new ArrayList<>();
@@ -54,11 +52,18 @@ public class QuiteTimeRemainingAdapter extends RecyclerView.Adapter<QuiteTimeRem
         final QuiteTimeRemaining quiteTimeRemaining = quiteTimeRemainingList.get(position);
 
         setupUserGridView(holder, quiteTimeRemaining);
+        QuiteTimeTimerListener quiteTimeTimerListener = createTimerListener(holder,quiteTimeRemaining);
+        quiteTimeTimer.toggleSubscription(quiteTimeTimerListener); //start the timer
 
-        QuiteTimeTimerListener quiteTimeTimerListener = new QuiteTimeTimerListener() {
-            @Override
-            public Integer onTick() {
+        holder.startStopButton.setOnClickListener(v -> {
+            quiteTimeTimer.toggleSubscription(quiteTimeTimerListener); //start/stop the timer
+        });
+    }
+
+    private QuiteTimeTimerListener createTimerListener(ViewHolder holder, QuiteTimeRemaining quiteTimeRemaining) {
+        return () -> {
                 Integer shouldRemoveIndex = null;
+
                 quiteTimeRemaining.decrementSecondsRemainig();
                 holder.remainingQuiteTime.setText(quiteTimeRemaining.getFormattedTimeRemaining());
                 if(quiteTimeRemaining.isFinished()) {
@@ -67,15 +72,9 @@ public class QuiteTimeRemainingAdapter extends RecyclerView.Adapter<QuiteTimeRem
                     notifyItemRemoved(quitePosition);
                     shouldRemoveIndex = quitePosition;
                 }
+
                 return shouldRemoveIndex;
-            }
         };
-
-        quiteTimeTimer.toggleSubscription(quiteTimeTimerListener);
-
-        holder.startStopButton.setOnClickListener(v -> {
-            quiteTimeTimer.toggleSubscription(quiteTimeTimerListener);
-        });
     }
 
 

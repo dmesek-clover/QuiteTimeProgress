@@ -23,7 +23,6 @@ public class QuiteTimeTimer {
                      } else {
                          timerListener.onTick();
                      }
-
                  }
 
                  if(removePosition != null) {
@@ -37,6 +36,15 @@ public class QuiteTimeTimer {
              }
          };
      }
+
+    public void toggleSubscription(QuiteTimeTimerListener quiteTimeTimerListener) {
+        if(timerListeners.contains(quiteTimeTimerListener)) {
+            unsubscribeFromTimer(quiteTimeTimerListener);
+        } else {
+            subscribeToTimer(quiteTimeTimerListener);
+        }
+    }
+
 
      private void subscribeToTimer(QuiteTimeTimerListener quiteTimeTimerListener) {
          if(timerListeners.isEmpty()) {
@@ -52,12 +60,6 @@ public class QuiteTimeTimer {
          }
      }
 
-     public void toggleSubscription(QuiteTimeTimerListener quiteTimeTimerListener) {
-         if(timerListeners.contains(quiteTimeTimerListener)) {
-             unsubscribeFromTimer(quiteTimeTimerListener);
-         } else {
-             subscribeToTimer(quiteTimeTimerListener);
-         }
-     }
+
 
 }
