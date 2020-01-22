@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
                 new QuiteTimeModel(120, 50),
                 new QuiteTimeModel(120, 80)));
 
-        //quiteTimeStats.updateTodayProgress(90);
 
         final Random rand = new Random();
         findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {

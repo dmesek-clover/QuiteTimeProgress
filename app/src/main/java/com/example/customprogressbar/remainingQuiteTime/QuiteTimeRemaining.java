@@ -1,5 +1,9 @@
 package com.example.customprogressbar.remainingQuiteTime;
 
+import android.text.Html;
+import android.text.SpannableString;
+import android.text.style.RelativeSizeSpan;
+
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
@@ -48,19 +52,28 @@ public class QuiteTimeRemaining {
         int minutes = (secondsRemaining % 3600) / 60;
         int seconds = secondsRemaining % 60;
 
-        String formattedTime;
-        if (hours == 0 && minutes == 0) {
-            formattedTime =
-                    String.format(Locale.ENGLISH, "%ds", seconds);
-        } else if (hours == 0) {
-            formattedTime =
-                    String.format(Locale.ENGLISH, "%dm %ds", minutes, seconds);
-        } else {
-            formattedTime = formattedTime =
-                    String.format(Locale.ENGLISH, "%dh %dm %ds", hours, minutes, seconds);
+        String formattedSeconds = String.format(Locale.ENGLISH, "%ds", seconds);
+        String formattedMinutes = String.format(Locale.ENGLISH, "%dm", minutes);
+        String formattedHours = String.format(Locale.ENGLISH, "%dh", hours);
+
+        StringBuilder formattedTime = new StringBuilder();
+
+        if(hours != 0 && minutes != 0) {
+            formattedTime
+                    .append(formattedHours)
+                    .append(" ")
+                    .append(formattedMinutes)
+                    .append(" ");
+        } else if(hours == 0 && minutes != 0) {
+            formattedTime
+                    .append(formattedMinutes)
+                    .append(" ");
         }
-        return formattedTime;
+        formattedTime.append(formattedSeconds);
+
+        return formattedTime.toString();
     }
+
 
     public List<QuiteTimeUser> getQuiteTimeUsers() {
         return quiteTimeUsers;

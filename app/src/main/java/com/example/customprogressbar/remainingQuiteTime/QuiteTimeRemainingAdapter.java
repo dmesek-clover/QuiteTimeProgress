@@ -60,27 +60,29 @@ public class QuiteTimeRemainingAdapter extends RecyclerView.Adapter<QuiteTimeRem
         });
     }
 
-    private QuiteTimeTimerListener createTimerListener(ViewHolder holder, QuiteTimeRemaining quiteTimeRemaining) {
-        return () -> {
-                Integer shouldRemoveIndex = null;
 
-                quiteTimeRemaining.decrementSecondsRemainig();
-                holder.remainingQuiteTime.setText(quiteTimeRemaining.getFormattedTimeRemaining());
-                if(quiteTimeRemaining.isFinished()) {
-                    int quitePosition = quiteTimeRemainingList.indexOf(quiteTimeRemaining);
-                    quiteTimeRemainingList.remove(quiteTimeRemaining);
-                    notifyItemRemoved(quitePosition);
-                    shouldRemoveIndex = quitePosition;
-                }
-
-                return shouldRemoveIndex;
-        };
-    }
 
 
     @Override
     public int getItemCount() {
         return quiteTimeRemainingList.size();
+    }
+
+    private QuiteTimeTimerListener createTimerListener(ViewHolder holder, QuiteTimeRemaining quiteTimeRemaining) {
+        return () -> {
+            Integer shouldRemoveIndex = null;
+
+            quiteTimeRemaining.decrementSecondsRemainig();
+            holder.remainingQuiteTime.setText(quiteTimeRemaining.getFormattedTimeRemaining());
+            if(quiteTimeRemaining.isFinished()) {
+                int quitePosition = quiteTimeRemainingList.indexOf(quiteTimeRemaining);
+                quiteTimeRemainingList.remove(quiteTimeRemaining);
+                notifyItemRemoved(quitePosition);
+                shouldRemoveIndex = quitePosition;
+            }
+
+            return shouldRemoveIndex;
+        };
     }
 
     private void setupUserGridView(ViewHolder holder, QuiteTimeRemaining quiteTimeRemaining) {
