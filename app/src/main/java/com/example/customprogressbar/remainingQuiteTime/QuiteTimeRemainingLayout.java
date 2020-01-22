@@ -40,6 +40,10 @@ public class QuiteTimeRemainingLayout {
     }
 
     private void updateData(List<RemainingQuiteTime> newQuiteTime) {
+        buildMultipleUsers(newQuiteTime);
+    }
+
+    private void buildMultipleUsers(List<RemainingQuiteTime> newQuiteTime) {
         for(RemainingQuiteTime quiteTimeRemaining: newQuiteTime) {
             View view = layoutInflater.inflate(R.layout.quite_time_remaining_item, null);
             populateView(view, quiteTimeRemaining);
@@ -55,7 +59,12 @@ public class QuiteTimeRemainingLayout {
         QuiteTimeTimerListener timerListener = createTimerListener(remainingQuiteTime, quiteTimeRemaining);
         quiteTimeTimer.toggleSubscription(timerListener);
 
-        QuiteTimeUserLayout quiteTimeUserAdapter = new QuiteTimeUserLayout(context, gridUsers, quiteTimeRemaining.getQuiteTimeUsers());
+        //TODO: toggle icon
+        pauseStartButton.setOnClickListener(v -> {
+            quiteTimeTimer.toggleSubscription(timerListener);
+        });
+
+        new QuiteTimeUserLayout(context, gridUsers, quiteTimeRemaining.getQuiteTimeUsers());
     }
 
     private void attachToLinearLayout(View view) {

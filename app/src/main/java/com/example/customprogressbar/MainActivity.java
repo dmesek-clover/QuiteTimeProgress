@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        final LinearLayout quiteTimeRV = findViewById(R.id.rv_quite_time);
+        final LinearLayout quiteTimeRV = findViewById(R.id.ll_quite_time);
         final QuiteTimeRemainingLayout quiteTimeRemainingAdapter = new QuiteTimeRemainingLayout(this, quiteTimeRV);
 
 //        quiteTimeRV.setAdapter(quiteTimeRemainingAdapter);
