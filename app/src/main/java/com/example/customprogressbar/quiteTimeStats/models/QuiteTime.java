@@ -1,29 +1,29 @@
-package com.example.customprogressbar.quiteTimeStats;
+package com.example.customprogressbar.quiteTimeStats.models;
 
-public class QuiteTimeModel {
+public class QuiteTime {
     private final int totalAmount;
     private final int usedAmount;
     private DayOfWeek dayOfWeek;
 
-    QuiteTimeModel(int totalAmount, int usedAmount, DayOfWeek dayOfWeek) {
+    public QuiteTime(int totalAmount, int usedAmount, DayOfWeek dayOfWeek) {
         this.totalAmount = totalAmount;
         this.usedAmount = usedAmount;
         this.dayOfWeek = dayOfWeek;
     }
 
-    public QuiteTimeModel(int totalAmount, int usedAmount) {
+    public QuiteTime(int totalAmount, int usedAmount) {
         this(totalAmount, usedAmount, null);
     }
 
-    int getTotalAmount() {
+    public int getTotalAmount() {
         return totalAmount;
     }
 
-    int getUsedAmount() {
+    public int getUsedAmount() {
         return usedAmount;
     }
 
-    DayOfWeek getDayOfWeek() {
+    public DayOfWeek getDayOfWeek() {
         return dayOfWeek;
     }
 

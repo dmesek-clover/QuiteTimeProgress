@@ -6,16 +6,18 @@ import android.animation.ObjectAnimator;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ProgressBar;
 
+import com.example.customprogressbar.quiteTimeStats.models.QuiteTime;
+
 import java.util.ArrayList;
 import java.util.List;
 
 class ProgressAnimator{
 
     private final List<ProgressBar> progressBars;
-    private final List<QuiteTimeModel> quiteTimeInfo;
+    private final List<QuiteTime> quiteTimeInfo;
     private final List<DayOfWeekProgress> progressAnimators = new ArrayList<>();
 
-    public ProgressAnimator(List<ProgressBar> progressBars, List<QuiteTimeModel> quiteTimeInfo) {
+    public ProgressAnimator(List<ProgressBar> progressBars, List<QuiteTime> quiteTimeInfo) {
         this.progressBars = progressBars;
         this.quiteTimeInfo = quiteTimeInfo;
         initializeProgressAnimators();

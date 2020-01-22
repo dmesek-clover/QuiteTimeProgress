@@ -1,4 +1,4 @@
-package com.example.customprogressbar.quiteTimeStats;
+package com.example.customprogressbar.quiteTimeStats.models;
 
 public enum DayOfWeek {
     MONDAY("M"), TUESDAY("T"), WEDNESDAY("W"),

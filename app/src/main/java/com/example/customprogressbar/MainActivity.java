@@ -3,21 +3,18 @@ package com.example.customprogressbar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.customprogressbar.quiteTimeStats.DayOfWeek;
-import com.example.customprogressbar.quiteTimeStats.QuiteTimeModel;
+import com.example.customprogressbar.quiteTimeStats.models.DayOfWeek;
+import com.example.customprogressbar.quiteTimeStats.models.QuiteTime;
 import com.example.customprogressbar.quiteTimeStats.QuiteTimeStats;
-import com.example.customprogressbar.remainingQuiteTime.QuiteTimeRemaining;
-import com.example.customprogressbar.remainingQuiteTime.QuiteTimeRemainingAdapter;
-import com.example.customprogressbar.remainingQuiteTime.QuiteTimeUser;
+import com.example.customprogressbar.remainingQuiteTime.models.RemainingQuiteTime;
+import com.example.customprogressbar.remainingQuiteTime.QuiteTimeRemainingLayout;
+import com.example.customprogressbar.remainingQuiteTime.models.QuiteTimeUser;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
@@ -31,13 +28,13 @@ public class MainActivity extends AppCompatActivity {
         quiteTimeStats.setTodayDayOfWeek(DayOfWeek.TUESDAY);
         quiteTimeStats.setTodayMaxProgress(120);
         quiteTimeStats.setPreviousWeekQuiteTime(Arrays.asList(
-                new QuiteTimeModel(120, 100),
-                new QuiteTimeModel(120, 60),
-                new QuiteTimeModel(120, 90),
-                new QuiteTimeModel(120, 60),
-                new QuiteTimeModel(120, 120),
-                new QuiteTimeModel(120, 50),
-                new QuiteTimeModel(120, 80)));
+                new QuiteTime(120, 100),
+                new QuiteTime(120, 60),
+                new QuiteTime(120, 90),
+                new QuiteTime(120, 60),
+                new QuiteTime(120, 120),
+                new QuiteTime(120, 50),
+                new QuiteTime(120, 80)));
 
 
         final Random rand = new Random();
@@ -54,26 +51,27 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        final QuiteTimeRemainingAdapter quiteTimeRemainingAdapter = new QuiteTimeRemainingAdapter(this);
-        final RecyclerView quiteTimeRV = findViewById(R.id.rv_quite_time);
-        quiteTimeRV.setAdapter(quiteTimeRemainingAdapter);
-        quiteTimeRV.setLayoutManager(new LinearLayoutManager(this));
-        quiteTimeRV.setNestedScrollingEnabled(false);
+        final LinearLayout quiteTimeRV = findViewById(R.id.rv_quite_time);
+        final QuiteTimeRemainingLayout quiteTimeRemainingAdapter = new QuiteTimeRemainingLayout(this, quiteTimeRV);
+
+//        quiteTimeRV.setAdapter(quiteTimeRemainingAdapter);
+//        quiteTimeRV.setLayoutManager(new LinearLayoutManager(this));
+//        quiteTimeRV.setNestedScrollingEnabled(false);
 
         quiteTimeRemainingAdapter.addAllQuiteTimeRemaining(Arrays.asList(
-                new QuiteTimeRemaining(
+                new RemainingQuiteTime(
                         Arrays.asList(new QuiteTimeUser("User1 big userrr eee", getResources().getDrawable(R.drawable.circle)),
                                         new QuiteTimeUser("User2", getResources().getDrawable(R.drawable.circle)),
                                 new QuiteTimeUser("User6", getResources().getDrawable(R.drawable.circle)),
                                 new QuiteTimeUser("User6", getResources().getDrawable(R.drawable.circle)),
                                 new QuiteTimeUser("User6", getResources().getDrawable(R.drawable.circle)),
-                                new QuiteTimeUser("User6", getResources().getDrawable(R.drawable.circle))), 3),
+                                new QuiteTimeUser("User6", getResources().getDrawable(R.drawable.circle))), 10),
 
 
-                new QuiteTimeRemaining(
+                new RemainingQuiteTime(
                         Arrays.asList(new QuiteTimeUser("User4", getResources().getDrawable(R.drawable.circle))),
                         15),
-                new QuiteTimeRemaining(
+                new RemainingQuiteTime(
                         Arrays.asList(new QuiteTimeUser("User5", getResources().getDrawable(R.drawable.circle))),
                         20)
 
@@ -81,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
 
         );
 
-        quiteTimeRemainingAdapter.addQuiteTimeRemaining(new QuiteTimeRemaining(
+        quiteTimeRemainingAdapter.addQuiteTimeRemaining(new RemainingQuiteTime(
                 Arrays.asList(new QuiteTimeUser("User20", getResources().getDrawable(R.drawable.circle))),
                 6000));
 

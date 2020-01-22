@@ -11,6 +11,8 @@ import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.customprogressbar.R;
+import com.example.customprogressbar.quiteTimeStats.models.DayOfWeek;
+import com.example.customprogressbar.quiteTimeStats.models.QuiteTime;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,7 +29,7 @@ public class QuiteTimeStats extends ConstraintLayout {
     private static final int DEFAULT_PROGRESS = 0;
     private static int animationDuration = 2000; //ms changed after first animation to 700ms
 
-    private List<QuiteTimeModel> previousWeekQuiteTime;
+    private List<QuiteTime> previousWeekQuiteTime;
     private int todayQuiteTimeProgress;
     private int todayIncrementProgress;
     private DayOfWeek todayDayOfWeek;
@@ -71,7 +73,7 @@ public class QuiteTimeStats extends ConstraintLayout {
         this.todayMaxProgress = todayMaxProgress;
     }
 
-    public void setPreviousWeekQuiteTime(List<QuiteTimeModel> previousWeekQuiteTime) {
+    public void setPreviousWeekQuiteTime(List<QuiteTime> previousWeekQuiteTime) {
         this.previousWeekQuiteTime = previousWeekQuiteTime;
         initializePreviousWeekData();
     }
@@ -122,11 +124,11 @@ public class QuiteTimeStats extends ConstraintLayout {
 
     private void setDataForProgressBars() {
         DayOfWeek currentDayOfWeek = todayDayOfWeek;
-        QuiteTimeModel quiteTime;
+        QuiteTime quiteTime;
         for (int index = 0; index < NUMBER_OF_DAYS_IN_WEEK; index++) {
             DayOfWeek previousDayOfWeek = getDayOfWeekBefore(currentDayOfWeek);
             if (index >= previousWeekQuiteTime.size()) {
-                quiteTime = new QuiteTimeModel(DEFAULT_MAX, DEFAULT_PROGRESS, previousDayOfWeek);
+                quiteTime = new QuiteTime(DEFAULT_MAX, DEFAULT_PROGRESS, previousDayOfWeek);
             } else {
                 quiteTime = previousWeekQuiteTime.get(index);
                 quiteTime.setDayOfWeek(previousDayOfWeek);
@@ -149,13 +151,13 @@ public class QuiteTimeStats extends ConstraintLayout {
         return previousDayOfWeek;
     }
 
-    private void setData(ConstraintLayout progressBarLayout, QuiteTimeModel quiteTimeModel) {
+    private void setData(ConstraintLayout progressBarLayout, QuiteTime quiteTime) {
         final ProgressBar progressBar = progressBarLayout.findViewById(R.id.pb_quite_time_week);
         final TextView label = progressBarLayout.findViewById(R.id.tv_day_of_week);
 
-        progressBar.setMax(quiteTimeModel.getTotalAmount());
+        progressBar.setMax(quiteTime.getTotalAmount());
 
-        DayOfWeek dayOfWeek = quiteTimeModel.getDayOfWeek();
+        DayOfWeek dayOfWeek = quiteTime.getDayOfWeek();
         label.setText(dayOfWeek.getDescription());
     }
 

@@ -4,16 +4,16 @@
     android:orientation="horizontal"
     android:background="#ffffff"
     android:weightSum="12"
-    android:layout_marginTop="10dp"
-    android:layout_marginBottom="10dp"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <GridView
+    <GridLayout
         android:id="@+id/gv_quite_time_users"
         android:paddingStart="5dp"
         android:paddingEnd="5dp"
-        android:numColumns="2"
+        android:columnCount="2"
         android:layout_weight="4"
         android:layout_width="0dp"
         android:layout_height="wrap_content"/>

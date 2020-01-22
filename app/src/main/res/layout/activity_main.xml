@@ -45,7 +45,8 @@
                     android:textStyle="bold"
                     android:text="Quite time ends in:" />
 
-                <androidx.recyclerview.widget.RecyclerView
+                <LinearLayout
+                    android:orientation="vertical"
                     android:id="@+id/rv_quite_time"
                     android:paddingBottom="10dp"
                     android:layout_width="match_parent"

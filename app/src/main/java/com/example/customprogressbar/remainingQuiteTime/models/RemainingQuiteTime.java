@@ -1,23 +1,19 @@
-package com.example.customprogressbar.remainingQuiteTime;
-
-import android.text.Html;
-import android.text.SpannableString;
-import android.text.style.RelativeSizeSpan;
+package com.example.customprogressbar.remainingQuiteTime.models;
 
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
-public class QuiteTimeRemaining {
+public class RemainingQuiteTime {
     private final List<QuiteTimeUser> quiteTimeUsers;
     private int secondsRemaining;
 
-    public QuiteTimeRemaining(List<QuiteTimeUser> quiteTimeUsers, int secondsRemaining) {
+    public RemainingQuiteTime(List<QuiteTimeUser> quiteTimeUsers, int secondsRemaining) {
         this.quiteTimeUsers = quiteTimeUsers;
         this.secondsRemaining = secondsRemaining;
     }
 
-    public QuiteTimeRemaining(List<QuiteTimeUser> quiteTimeUsers) {
+    public RemainingQuiteTime(List<QuiteTimeUser> quiteTimeUsers) {
         this(quiteTimeUsers, 0);
     }
 
@@ -38,7 +34,7 @@ public class QuiteTimeRemaining {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        QuiteTimeRemaining that = (QuiteTimeRemaining) o;
+        RemainingQuiteTime that = (RemainingQuiteTime) o;
         return Objects.equals(getQuiteTimeUsers(), that.getQuiteTimeUsers());
     }
 

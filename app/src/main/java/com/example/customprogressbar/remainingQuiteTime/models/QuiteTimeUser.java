@@ -1,4 +1,4 @@
-package com.example.customprogressbar.remainingQuiteTime;
+package com.example.customprogressbar.remainingQuiteTime.models;
 
 import android.graphics.drawable.Drawable;
 

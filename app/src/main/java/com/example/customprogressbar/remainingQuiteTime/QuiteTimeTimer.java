@@ -10,7 +10,7 @@ public class QuiteTimeTimer {
     private static final int millisInSecond = 1000;
 
     private CountDownTimer timer;
-    private final List<QuiteTimeTimerListener> timerListeners = new ArrayList<>();
+    private List<QuiteTimeTimerListener> timerListeners = new ArrayList<>();
 
      public QuiteTimeTimer() {
          timer = new CountDownTimer(Long.MAX_VALUE, millisInSecond) {
@@ -29,6 +29,7 @@ public class QuiteTimeTimer {
                      //unsubscribed, so that the timer can stop ticking if no one is listening
                      unsubscribeFromTimer(timerListeners.get(removePosition));
                  }
+
              }
 
              @Override
