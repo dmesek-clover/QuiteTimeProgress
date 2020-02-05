@@ -19,23 +19,25 @@ class QuiteTimeLayoutProvider (
 
     private val quiteTimeRemainingList = arrayListOf<RemainingQuiteTime>()
 
-    private var currentLayoutProviderState = LayoutProviderState.MULTIPLE
-    private var currentLayout: QuiteTimeLayout = QuiteTimeMultiple(context, root, this, quiteTimeRemainingList)
+    private var currentLayoutProviderState = LayoutProviderState.EMPTY
+    private var currentLayout: QuiteTimeLayout = QuiteTimeEmpty(context, root, this, quiteTimeRemainingList)
 
     fun addQuiteTimeRemaining(element: RemainingQuiteTime) {
         quiteTimeRemainingList.add(element)
-        //quiteTimeRemainingListChanged(increment = 1)
         currentLayout.addedSingle(element)
+        quiteTimeRemainingListChanged(increment = 1)
+
     }
 
     fun addAllQuiteTimeRemaining(list: List<RemainingQuiteTime>) {
         quiteTimeRemainingList.addAll(list)
-        //quiteTimeRemainingListChanged(increment = list.size)
         currentLayout.addedMultiple(list)
+        quiteTimeRemainingListChanged(increment = list.size)
+
     }
 
     override fun itemRemoved() {
-        //quiteTimeRemainingListChanged(increment = null)
+        quiteTimeRemainingListChanged(increment = null)
     }
 
     private fun quiteTimeRemainingListChanged(increment: Int?) {

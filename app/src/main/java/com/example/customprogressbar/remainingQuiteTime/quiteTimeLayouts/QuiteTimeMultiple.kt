@@ -90,6 +90,7 @@ class QuiteTimeMultiple(
                 remainingQuiteTimeList.remove(quiteTimeRemaining)
                 root.removeViewAt(quitePosition)
                 shouldRemoveIndex = quitePosition
+                layoutProvider.itemRemoved()
             }
 
             return shouldRemoveIndex

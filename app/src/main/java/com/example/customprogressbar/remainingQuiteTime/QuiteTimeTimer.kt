@@ -28,7 +28,9 @@ object QuiteTimeTimer {
 
                 if (removePosition != null) {
                     //unsubscribed, so that the timer can stop ticking if no one is listening
-                    unsubscribeFromTimer(timerListeners[removePosition])
+                    try {
+                        unsubscribeFromTimer(timerListeners[removePosition])
+                    } catch (ignore: IndexOutOfBoundsException) {}
                 }
             }
 
