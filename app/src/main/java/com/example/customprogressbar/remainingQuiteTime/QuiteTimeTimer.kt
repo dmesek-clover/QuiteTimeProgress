@@ -1,4 +1,4 @@
-package com.example.customprogressbar.remainingQuiteTimeKotlin
+package com.example.customprogressbar.remainingQuiteTime
 
 import android.os.CountDownTimer
 import java.util.LinkedList

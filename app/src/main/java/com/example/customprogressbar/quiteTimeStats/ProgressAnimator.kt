@@ -8,6 +8,10 @@ import android.widget.ProgressBar
 import com.example.customprogressbar.quiteTimeStats.models.QuiteTime
 import java.util.*
 
+internal interface CustomAnimationListener {
+    fun onCustomStart()
+}
+
 internal class ProgressAnimator(
         private val progressBars: List<ProgressBar>,
         private val quiteTimeInfo: List<QuiteTime>) {
@@ -90,8 +94,4 @@ internal class ProgressAnimator(
 
     }
 
-}
-
-internal interface CustomAnimationListener {
-    fun onCustomStart()
 }

@@ -1,4 +1,4 @@
-package com.example.customprogressbar.remainingQuiteTimeKotlin
+package com.example.customprogressbar.remainingQuiteTime
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -11,7 +11,7 @@ import android.widget.TextView
 import com.example.customprogressbar.R
 import com.example.customprogressbar.remainingQuiteTime.models.QuiteTimeUser
 
-internal class QuiteTimeUserLayout(
+internal class QuiteTimeGridUserLayout(
         context: Context,
         private val root: GridLayout,
         private val quiteTimeUsers: List<QuiteTimeUser>

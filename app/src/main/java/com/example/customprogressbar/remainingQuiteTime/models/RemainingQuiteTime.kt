@@ -1,6 +1,4 @@
-package com.example.customprogressbar.remainingQuiteTimeKotlin.models
-
-import com.example.customprogressbar.remainingQuiteTime.models.QuiteTimeUser
+package com.example.customprogressbar.remainingQuiteTime.models
 
 class RemainingQuiteTime constructor(
         val quiteTimeUsers: List<QuiteTimeUser>,
@@ -21,15 +19,13 @@ class RemainingQuiteTime constructor(
             val minutes = secondsRemaining % secondsInHours / secondsInMinutes
             val seconds = secondsRemaining % secondsInMinutes
 
-
             var formattedTime = ""
-
             if (hours != 0 && minutes != 0) {
-                formattedTime = "$hours $minutes "
+                formattedTime = "${hours}h ${minutes}m "
             } else if (hours == 0 && minutes != 0) {
-                formattedTime = "$minutes "
+                formattedTime = "${minutes}m "
             }
-            formattedTime += "$seconds"
+            formattedTime += "${seconds}s"
 
             return formattedTime
         }

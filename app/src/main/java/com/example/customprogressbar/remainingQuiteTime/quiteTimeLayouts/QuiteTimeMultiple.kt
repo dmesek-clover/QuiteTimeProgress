@@ -1,4 +1,4 @@
-package com.example.customprogressbar.remainingQuiteTimeKotlin
+package com.example.customprogressbar.remainingQuiteTime.quiteTimeLayouts
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -8,9 +8,12 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.example.customprogressbar.R
-import com.example.customprogressbar.remainingQuiteTimeKotlin.models.RemainingQuiteTime
+import com.example.customprogressbar.remainingQuiteTime.QuiteTimeTimer
+import com.example.customprogressbar.remainingQuiteTime.QuiteTimeTimerListener
+import com.example.customprogressbar.remainingQuiteTime.QuiteTimeGridUserLayout
+import com.example.customprogressbar.remainingQuiteTime.models.RemainingQuiteTime
 
-class QuiteTimeMultipleRemaining(
+class QuiteTimeMultiple(
         private val context: Context,
         private val root: LinearLayout
 ) {
@@ -43,7 +46,7 @@ class QuiteTimeMultipleRemaining(
         val timerListener = createTimerListener(remainingQuiteTime, quiteTimeRemaining)
         QuiteTimeTimer.subscribeToTimer(timerListener)
 
-        QuiteTimeUserLayout(context, gridUsers, quiteTimeRemaining.quiteTimeUsers)
+        QuiteTimeGridUserLayout(context, gridUsers, quiteTimeRemaining.quiteTimeUsers)
 
         stopButton.setOnClickListener {
             if(quiteTimeRemaining.quiteTimeUsers.size == 1) {
