@@ -2,17 +2,12 @@ package com.example.customprogressbar;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.customprogressbar.quiteTimeStatsKotlin.models.DayOfWeek;
-import com.example.customprogressbar.quiteTimeStatsKotlin.models.QuiteTime;
-import com.example.customprogressbar.quiteTimeStatsKotlin.QuiteTimeStats;
-import com.example.customprogressbar.remainingQuiteTime.QTLayoutProvider;
-import com.example.customprogressbar.remainingQuiteTime.models.RemainingQuiteTime;
-import com.example.customprogressbar.remainingQuiteTime.QuiteTimeMultipleRemainingLayout;
-import com.example.customprogressbar.remainingQuiteTime.models.QuiteTimeUser;
+import com.example.customprogressbar.quiteTimeStats.models.DayOfWeek;
+import com.example.customprogressbar.quiteTimeStats.models.QuiteTime;
+import com.example.customprogressbar.quiteTimeStats.QuiteTimeStats;
 
 import java.util.Arrays;
 import java.util.Random;

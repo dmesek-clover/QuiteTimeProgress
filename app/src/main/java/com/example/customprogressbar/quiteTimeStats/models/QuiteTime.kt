@@ -1,4 +1,4 @@
-package com.example.customprogressbar.quiteTimeStatsKotlin.models
+package com.example.customprogressbar.quiteTimeStats.models
 
 data class QuiteTime(
         val totalAmount: Int,

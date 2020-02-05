@@ -33,19 +33,6 @@ public class RemainingQuiteTime {
     }
 
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        RemainingQuiteTime that = (RemainingQuiteTime) o;
-        return Objects.equals(getQuiteTimeUsers(), that.getQuiteTimeUsers());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getQuiteTimeUsers());
-    }
-
     public String getFormattedTimeRemaining() {
         int hours = secondsRemaining / secondsInHours;
         int minutes = (secondsRemaining % secondsInHours) / secondsInMinutes;

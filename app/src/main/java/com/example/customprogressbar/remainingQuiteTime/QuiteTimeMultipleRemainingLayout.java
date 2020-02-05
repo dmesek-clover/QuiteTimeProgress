@@ -17,7 +17,7 @@ import java.util.List;
 
 
 
-public class QuiteTimeMultipleRemainingLayout implements QuiteTimeLayout {
+public class QuiteTimeMultipleRemainingLayout {
 
     private final LayoutInflater layoutInflater;
     private final Context context;
@@ -43,15 +43,6 @@ public class QuiteTimeMultipleRemainingLayout implements QuiteTimeLayout {
         addAllQuiteTimeRemaining(Collections.singletonList(quiteTimeRemaining));
     }
 
-    public void stop() {
-        quiteTimeRemainingList.clear();
-        quiteTimeTimer.removeAllSubscribers();
-    }
-
-    @Override
-    public int getSize() {
-        return quiteTimeRemainingList.size();
-    }
 
     private void populateData(List<RemainingQuiteTime> newQuiteTime) {
         buildMultipleUsers(newQuiteTime);

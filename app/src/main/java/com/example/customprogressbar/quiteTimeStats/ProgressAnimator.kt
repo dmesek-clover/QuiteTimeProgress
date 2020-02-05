@@ -1,11 +1,11 @@
-package com.example.customprogressbar.quiteTimeStatsKotlin
+package com.example.customprogressbar.quiteTimeStats
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.ObjectAnimator
 import android.view.animation.DecelerateInterpolator
 import android.widget.ProgressBar
-import com.example.customprogressbar.quiteTimeStatsKotlin.models.QuiteTime
+import com.example.customprogressbar.quiteTimeStats.models.QuiteTime
 import java.util.*
 
 internal class ProgressAnimator(
@@ -21,7 +21,7 @@ internal class ProgressAnimator(
 
     //start the chain reaction
     fun startAnimation() {
-        if (!progressAnimators.isEmpty()) {
+        if (progressAnimators.isNotEmpty()) {
             progressAnimators[0].startAnimation()
         }
     }
@@ -49,6 +49,7 @@ internal class ProgressAnimator(
         private var nextProgressBar: CustomAnimationListener? = null
         private var objectAnimator: ObjectAnimator = initializeObjectAnimator(initialProgress)
         //used by ObjectAnimator
+        @Suppress("unused")
         private var progress: Int = 0
             set(progress) {
                 field = progress
@@ -75,10 +76,6 @@ internal class ProgressAnimator(
                 interpolator = DecelerateInterpolator()
 
                 addListener(object : AnimatorListenerAdapter() {
-                    override fun onAnimationEnd(animation: Animator) {
-                        super.onAnimationEnd(animation)
-                        //nothing for now
-                    }
 
                     override fun onAnimationStart(animation: Animator) {
                         super.onAnimationStart(animation)

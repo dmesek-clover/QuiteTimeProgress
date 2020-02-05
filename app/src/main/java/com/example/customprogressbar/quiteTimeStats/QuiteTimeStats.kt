@@ -1,4 +1,4 @@
-package com.example.customprogressbar.quiteTimeStatsKotlin
+package com.example.customprogressbar.quiteTimeStats
 
 import android.animation.ObjectAnimator
 import android.content.Context
@@ -9,8 +9,8 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 
 import com.example.customprogressbar.R
-import com.example.customprogressbar.quiteTimeStatsKotlin.models.DayOfWeek
-import com.example.customprogressbar.quiteTimeStatsKotlin.models.QuiteTime
+import com.example.customprogressbar.quiteTimeStats.models.DayOfWeek
+import com.example.customprogressbar.quiteTimeStats.models.QuiteTime
 
 import java.util.ArrayList
 
