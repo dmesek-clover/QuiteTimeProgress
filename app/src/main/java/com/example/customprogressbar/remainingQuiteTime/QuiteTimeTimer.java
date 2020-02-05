@@ -2,28 +2,36 @@ package com.example.customprogressbar.remainingQuiteTime;
 
 import android.os.CountDownTimer;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
-public class QuiteTimeTimer {
+class QuiteTimeTimer {
 
     private static final int millisInSecond = 1000;
 
     private CountDownTimer timer;
-    private List<QuiteTimeTimerListener> timerListeners = new ArrayList<>();
+    private List<QuiteTimeTimerListener> timerListeners = new LinkedList<>();
+    private boolean removeAll = false;
 
-     public QuiteTimeTimer() {
+     QuiteTimeTimer() {
          timer = new CountDownTimer(Long.MAX_VALUE, millisInSecond) {
              @Override
              public void onTick(long l) {
                  Integer removePosition = null;
                  for (QuiteTimeTimerListener timerListener : timerListeners) {
+                     if(removeAll) {
+                         deleteAllSubscribers();
+                         removeAll = false;
+                         break;
+                     }
                      if(removePosition == null) {
                          removePosition = timerListener.onTick();
                      } else {
                          timerListener.onTick();
                      }
                  }
+
+
 
                  if(removePosition != null) {
                      //unsubscribed, so that the timer can stop ticking if no one is listening
@@ -39,27 +47,28 @@ public class QuiteTimeTimer {
          };
      }
 
-    public void toggleSubscription(QuiteTimeTimerListener quiteTimeTimerListener) {
-        if(timerListeners.contains(quiteTimeTimerListener)) {
-            unsubscribeFromTimer(quiteTimeTimerListener);
-        } else {
-            subscribeToTimer(quiteTimeTimerListener);
-        }
-    }
+     void removeAllSubscribers() {
+         removeAll = true;
+     }
 
 
-     private void subscribeToTimer(QuiteTimeTimerListener quiteTimeTimerListener) {
+     void subscribeToTimer(QuiteTimeTimerListener quiteTimeTimerListener) {
          if(timerListeners.isEmpty()) {
              timer.start();
          }
          timerListeners.add(quiteTimeTimerListener);
      }
 
-     private void unsubscribeFromTimer(QuiteTimeTimerListener quiteTimeTimerListener) {
+    void unsubscribeFromTimer(QuiteTimeTimerListener quiteTimeTimerListener) {
          timerListeners.remove(quiteTimeTimerListener);
          if(timerListeners.isEmpty()) {
              timer.cancel();
          }
+     }
+
+     private void deleteAllSubscribers() {
+//         timer.cancel();
+         timerListeners = new LinkedList<>();
      }
 
 

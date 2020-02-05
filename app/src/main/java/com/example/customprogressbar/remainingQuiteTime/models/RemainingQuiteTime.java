@@ -5,6 +5,9 @@ import java.util.Locale;
 import java.util.Objects;
 
 public class RemainingQuiteTime {
+    private static final int secondsInHours = 3600;
+    private static final int secondsInMinutes = 60;
+
     private final List<QuiteTimeUser> quiteTimeUsers;
     private int secondsRemaining;
 
@@ -44,9 +47,9 @@ public class RemainingQuiteTime {
     }
 
     public String getFormattedTimeRemaining() {
-        int hours = secondsRemaining / 3600;
-        int minutes = (secondsRemaining % 3600) / 60;
-        int seconds = secondsRemaining % 60;
+        int hours = secondsRemaining / secondsInHours;
+        int minutes = (secondsRemaining % secondsInHours) / secondsInMinutes;
+        int seconds = secondsRemaining % secondsInMinutes;
 
         String formattedSeconds = String.format(Locale.ENGLISH, "%ds", seconds);
         String formattedMinutes = String.format(Locale.ENGLISH, "%dm", minutes);

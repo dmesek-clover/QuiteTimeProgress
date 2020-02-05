@@ -12,13 +12,14 @@ import com.example.customprogressbar.remainingQuiteTime.models.QuiteTimeUser;
 
 import java.util.List;
 
-public class QuiteTimeUserLayout {
+class QuiteTimeUserLayout {
 
     private final LayoutInflater layoutInflater;
     private final GridLayout root;
     private final List<QuiteTimeUser> quiteTimeUsers;
 
-    public QuiteTimeUserLayout(Context context, GridLayout root, List<QuiteTimeUser> quiteTimeUsers) {
+    QuiteTimeUserLayout(Context context, GridLayout root,
+                        List<QuiteTimeUser> quiteTimeUsers) {
         this.root = root;
         this.layoutInflater = LayoutInflater.from(context);
         this.quiteTimeUsers = quiteTimeUsers;
@@ -29,7 +30,8 @@ public class QuiteTimeUserLayout {
     private void updateData() {
         root.removeAllViews();
         for(QuiteTimeUser quiteTimeUser: quiteTimeUsers) {
-            View view = layoutInflater.inflate(R.layout.quite_time_user_item, null);
+            View view;
+            view = layoutInflater.inflate(R.layout.quite_time_multiple_user_item, null);
             populateView(view, quiteTimeUser);
             attachToLinearLayout(view);
         }

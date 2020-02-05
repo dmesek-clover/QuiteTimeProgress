@@ -2,16 +2,16 @@ package com.example.customprogressbar;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.customprogressbar.quiteTimeStats.models.DayOfWeek;
-import com.example.customprogressbar.quiteTimeStats.models.QuiteTime;
-import com.example.customprogressbar.quiteTimeStats.QuiteTimeStats;
+import com.example.customprogressbar.quiteTimeStatsKotlin.models.DayOfWeek;
+import com.example.customprogressbar.quiteTimeStatsKotlin.models.QuiteTime;
+import com.example.customprogressbar.quiteTimeStatsKotlin.QuiteTimeStats;
+import com.example.customprogressbar.remainingQuiteTime.QTLayoutProvider;
 import com.example.customprogressbar.remainingQuiteTime.models.RemainingQuiteTime;
-import com.example.customprogressbar.remainingQuiteTime.QuiteTimeRemainingLayout;
+import com.example.customprogressbar.remainingQuiteTime.QuiteTimeMultipleRemainingLayout;
 import com.example.customprogressbar.remainingQuiteTime.models.QuiteTimeUser;
 
 import java.util.Arrays;
@@ -28,60 +28,48 @@ public class MainActivity extends AppCompatActivity {
         quiteTimeStats.setTodayDayOfWeek(DayOfWeek.TUESDAY);
         quiteTimeStats.setTodayMaxProgress(120);
         quiteTimeStats.setPreviousWeekQuiteTime(Arrays.asList(
-                new QuiteTime(120, 100),
-                new QuiteTime(120, 60),
-                new QuiteTime(120, 90),
-                new QuiteTime(120, 60),
-                new QuiteTime(120, 120),
-                new QuiteTime(120, 50),
-                new QuiteTime(120, 80)));
+                new QuiteTime(120, 100, null),
+                new QuiteTime(120, 60, null),
+                new QuiteTime(120, 90, null),
+                new QuiteTime(120, 60,null ),
+                new QuiteTime(120, 120, null),
+                new QuiteTime(120, 50, null),
+                new QuiteTime(120, 80, null)));
 
 
         final Random rand = new Random();
-        findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                quiteTimeStats.updateTodayProgress(Math.abs(rand.nextInt()) % 120);
-            }
-        });
-        findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                reset();
-            }
-        });
+        findViewById(R.id.button2).setOnClickListener(view -> quiteTimeStats.updateTodayProgress(Math.abs(rand.nextInt()) % 120));
+        findViewById(R.id.button).setOnClickListener(view -> reset());
 
-        final LinearLayout quiteTimeRV = findViewById(R.id.ll_quite_time);
-        final QuiteTimeRemainingLayout quiteTimeRemainingAdapter = new QuiteTimeRemainingLayout(this, quiteTimeRV);
+//        final LinearLayout quiteTimeRV = findViewById(R.id.ll_quite_time);
+//        final QTLayoutProvider quiteTimeRemainingAdapter = new QTLayoutProvider(quiteTimeRV, this);
+//
+//        quiteTimeRemainingAdapter.addQuiteTimeRemaining(new RemainingQuiteTime(
+//                Arrays.asList(new QuiteTimeUser("User20", getResources().getDrawable(R.drawable.circle))),
+//                6000));
+//
+//        quiteTimeRemainingAdapter.addAllQuiteTimeRemaining(Arrays.asList(
+//                new RemainingQuiteTime(
+//                        Arrays.asList(new QuiteTimeUser("User1 big userrr eee", getResources().getDrawable(R.drawable.circle)),
+//                                        new QuiteTimeUser("User2", getResources().getDrawable(R.drawable.circle)),
+//                                new QuiteTimeUser("User6", getResources().getDrawable(R.drawable.circle)),
+//                                new QuiteTimeUser("User6", getResources().getDrawable(R.drawable.circle)),
+//                                new QuiteTimeUser("User6", getResources().getDrawable(R.drawable.circle)),
+//                                new QuiteTimeUser("User6", getResources().getDrawable(R.drawable.circle))), 10),
+//
+//
+//                new RemainingQuiteTime(
+//                        Arrays.asList(new QuiteTimeUser("User4", getResources().getDrawable(R.drawable.circle))),
+//                        15),
+//                new RemainingQuiteTime(
+//                        Arrays.asList(new QuiteTimeUser("User5", getResources().getDrawable(R.drawable.circle))),
+//                        20)
+//
+//                )
+//
+//        );
 
-//        quiteTimeRV.setAdapter(quiteTimeRemainingAdapter);
-//        quiteTimeRV.setLayoutManager(new LinearLayoutManager(this));
-//        quiteTimeRV.setNestedScrollingEnabled(false);
 
-        quiteTimeRemainingAdapter.addAllQuiteTimeRemaining(Arrays.asList(
-                new RemainingQuiteTime(
-                        Arrays.asList(new QuiteTimeUser("User1 big userrr eee", getResources().getDrawable(R.drawable.circle)),
-                                        new QuiteTimeUser("User2", getResources().getDrawable(R.drawable.circle)),
-                                new QuiteTimeUser("User6", getResources().getDrawable(R.drawable.circle)),
-                                new QuiteTimeUser("User6", getResources().getDrawable(R.drawable.circle)),
-                                new QuiteTimeUser("User6", getResources().getDrawable(R.drawable.circle)),
-                                new QuiteTimeUser("User6", getResources().getDrawable(R.drawable.circle))), 10),
-
-
-                new RemainingQuiteTime(
-                        Arrays.asList(new QuiteTimeUser("User4", getResources().getDrawable(R.drawable.circle))),
-                        15),
-                new RemainingQuiteTime(
-                        Arrays.asList(new QuiteTimeUser("User5", getResources().getDrawable(R.drawable.circle))),
-                        20)
-
-                )
-
-        );
-
-        quiteTimeRemainingAdapter.addQuiteTimeRemaining(new RemainingQuiteTime(
-                Arrays.asList(new QuiteTimeUser("User20", getResources().getDrawable(R.drawable.circle))),
-                6000));
 
     }
 

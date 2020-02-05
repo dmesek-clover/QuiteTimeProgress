@@ -12,40 +12,54 @@ import com.example.customprogressbar.R;
 import com.example.customprogressbar.remainingQuiteTime.models.RemainingQuiteTime;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
-public class QuiteTimeRemainingLayout {
+
+
+public class QuiteTimeMultipleRemainingLayout implements QuiteTimeLayout {
 
     private final LayoutInflater layoutInflater;
     private final Context context;
     private final LinearLayout root;
-    private List<RemainingQuiteTime> quiteTimeRemainingList = new ArrayList<>();
+    private List<RemainingQuiteTime> quiteTimeRemainingList;
     private final QuiteTimeTimer quiteTimeTimer = new QuiteTimeTimer();
 
-    public QuiteTimeRemainingLayout(Context context, LinearLayout root) {
+    public QuiteTimeMultipleRemainingLayout(Context context, LinearLayout root, List<RemainingQuiteTime> quiteTimeRemainingList) {
         this.context = context;
         this.root = root;
+        this.quiteTimeRemainingList = quiteTimeRemainingList;
         this.layoutInflater = LayoutInflater.from(context);
-    }
 
-    public void addQuiteTimeRemaining(RemainingQuiteTime quiteTimeRemaining) {
-        quiteTimeRemainingList.add(quiteTimeRemaining);
-        updateData(Arrays.asList(quiteTimeRemaining));
+        populateData(quiteTimeRemainingList);
     }
 
     public void addAllQuiteTimeRemaining(List<RemainingQuiteTime> quiteTimeRemainingList) {
         this.quiteTimeRemainingList.addAll(quiteTimeRemainingList);
-        updateData(quiteTimeRemainingList);
+        populateData(quiteTimeRemainingList);
     }
 
-    private void updateData(List<RemainingQuiteTime> newQuiteTime) {
+    public void addQuiteTimeRemaining(RemainingQuiteTime quiteTimeRemaining) {
+        addAllQuiteTimeRemaining(Collections.singletonList(quiteTimeRemaining));
+    }
+
+    public void stop() {
+        quiteTimeRemainingList.clear();
+        quiteTimeTimer.removeAllSubscribers();
+    }
+
+    @Override
+    public int getSize() {
+        return quiteTimeRemainingList.size();
+    }
+
+    private void populateData(List<RemainingQuiteTime> newQuiteTime) {
         buildMultipleUsers(newQuiteTime);
     }
 
     private void buildMultipleUsers(List<RemainingQuiteTime> newQuiteTime) {
         for(RemainingQuiteTime quiteTimeRemaining: newQuiteTime) {
-            View view = layoutInflater.inflate(R.layout.quite_time_remaining_item, null);
+            View view = layoutInflater.inflate(R.layout.quite_time_multiple_remaining_item, null);
             populateView(view, quiteTimeRemaining);
             attachToLinearLayout(view);
         }
@@ -54,21 +68,24 @@ public class QuiteTimeRemainingLayout {
     private void populateView(View view, RemainingQuiteTime quiteTimeRemaining) {
         final GridLayout gridUsers = view.findViewById(R.id.gv_quite_time_users);
         final TextView remainingQuiteTime = view.findViewById(R.id.tv_remaining_quite_time);
-        final ImageView pauseStartButton = view.findViewById(R.id.btn_stop_quite_time);
+        final ImageView stopButton = view.findViewById(R.id.btn_stop_quite_time);
 
         QuiteTimeTimerListener timerListener = createTimerListener(remainingQuiteTime, quiteTimeRemaining);
-        quiteTimeTimer.toggleSubscription(timerListener);
-
-        //TODO: toggle icon
-        pauseStartButton.setOnClickListener(v -> {
-            quiteTimeTimer.toggleSubscription(timerListener);
-        });
+        quiteTimeTimer.subscribeToTimer(timerListener);
 
         new QuiteTimeUserLayout(context, gridUsers, quiteTimeRemaining.getQuiteTimeUsers());
+
+        stopButton.setOnClickListener(v -> {
+            quiteTimeRemainingList.remove(quiteTimeRemaining);
+            quiteTimeTimer.unsubscribeFromTimer(timerListener);
+            root.removeView(view);
+        });
+
+
     }
 
     private void attachToLinearLayout(View view) {
-        root.addView(view);
+            root.addView(view);
     }
 
     private QuiteTimeTimerListener createTimerListener(TextView remainingQuiteTime, RemainingQuiteTime quiteTimeRemaining) {
