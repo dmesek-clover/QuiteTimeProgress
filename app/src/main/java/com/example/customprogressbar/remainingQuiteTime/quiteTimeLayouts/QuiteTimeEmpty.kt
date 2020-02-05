@@ -3,12 +3,16 @@ package com.example.customprogressbar.remainingQuiteTime.quiteTimeLayouts
 import android.content.Context
 import android.view.View
 import android.widget.LinearLayout
+import com.example.customprogressbar.remainingQuiteTime.LayoutChangedListener
+import com.example.customprogressbar.remainingQuiteTime.QuiteTimeLayoutProvider
 import com.example.customprogressbar.remainingQuiteTime.models.RemainingQuiteTime
 
 class QuiteTimeEmpty(
         context: Context,
-        root: LinearLayout
-) : QuiteTimeLayout(context, root) {
+        root: LinearLayout,
+        layoutProvider: LayoutChangedListener,
+        remainingQuiteTimeList: ArrayList<RemainingQuiteTime>
+) : QuiteTimeLayout(context, root, layoutProvider, remainingQuiteTimeList) {
 
     init {
         root.visibility = View.GONE
@@ -18,11 +22,11 @@ class QuiteTimeEmpty(
         //ignore
     }
 
-    override fun add(remainingQuiteTime: RemainingQuiteTime) {
+    override fun addedSingle(remainingQuiteTime: RemainingQuiteTime) {
         //ignore
     }
 
-    override fun addAll(remainingQuiteTime: List<RemainingQuiteTime>) {
+    override fun addedMultiple(remainingQuiteTime: List<RemainingQuiteTime>) {
         //ignore
     }
 

@@ -10,7 +10,7 @@ import com.example.customprogressbar.quiteTimeStats.models.DayOfWeek;
 import com.example.customprogressbar.quiteTimeStats.models.QuiteTime;
 import com.example.customprogressbar.quiteTimeStats.QuiteTimeStats;
 
-import com.example.customprogressbar.remainingQuiteTime.quiteTimeLayouts.QuiteTimeMultiple;
+import com.example.customprogressbar.remainingQuiteTime.QuiteTimeLayoutProvider;
 import com.example.customprogressbar.remainingQuiteTime.models.QuiteTimeUser;
 import com.example.customprogressbar.remainingQuiteTime.models.RemainingQuiteTime;
 
@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.button).setOnClickListener(view -> reset());
 
         final LinearLayout quiteTimeRV = findViewById(R.id.ll_quite_time);
-        final QuiteTimeMultiple quiteTimeRemainingAdapter = new QuiteTimeMultiple( this, quiteTimeRV);
+        final QuiteTimeLayoutProvider quiteTimeRemainingAdapter = new QuiteTimeLayoutProvider( this, quiteTimeRV);
 
         final RemainingQuiteTime rqt = new RemainingQuiteTime(
                 Arrays.asList(new QuiteTimeUser("User20", getResources().getDrawable(R.drawable.circle))),
