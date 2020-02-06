@@ -9,6 +9,8 @@ class RemainingQuiteTime constructor(
         private const val secondsInMinutes = 60
     }
 
+    var stopped: Boolean = false
+
     val isFinished: Boolean
         get() = secondsRemaining == 0
 

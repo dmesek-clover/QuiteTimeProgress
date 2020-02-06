@@ -192,13 +192,4 @@
 
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/circle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="82dp"
-        app:layout_constraintStart_toStartOf="@+id/pb_quite_time_today"
-        app:layout_constraintTop_toTopOf="@+id/pb_quite_time_today"
-        app:srcCompat="@drawable/circle" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -23,7 +23,6 @@ class QuiteTimeMultiple(
 ) : QuiteTimeLayout(context, root, layoutProvider, remainingQuiteTimeList) {
 
     private val layoutInflater = LayoutInflater.from(context)
-    private val timerListeners = arrayListOf<QuiteTimeTimerListener>()
 
     init {
         createHeader()
@@ -40,9 +39,7 @@ class QuiteTimeMultiple(
     }
 
     override fun detachLayout() {
-        for (timerListener in timerListeners) {
-            QuiteTimeTimer.unsubscribeFromTimer(timerListener)
-        }
+        QuiteTimeTimer.resetTimer()
     }
 
     private fun createHeader() {
@@ -67,44 +64,37 @@ class QuiteTimeMultiple(
         val stopButton = view.findViewById<ImageView>(R.id.btn_stop_quite_time)
 
         val timerListener = createTimerListener(remainingQuiteTime, quiteTimeRemaining)
-        timerListeners.add(timerListener)
         QuiteTimeTimer.subscribeToTimer(timerListener)
 
         QuiteTimeGridUserLayout(context, gridUsers, quiteTimeRemaining.quiteTimeUsers, R.layout.quite_time_multiple_user_item)
 
         stopButton.setOnClickListener {
             if (quiteTimeRemaining.quiteTimeUsers.size == 1) {
-                deleteQuiteTime(quiteTimeRemaining, timerListener, view)
+                quiteTimeRemaining.stopped = true
             } else {
                 //show dialog
             }
         }
     }
 
-    private fun deleteQuiteTime(quiteTimeRemaining: RemainingQuiteTime, timerListener: QuiteTimeTimerListener, view: View) {
-        remainingQuiteTimeList.remove(quiteTimeRemaining)
-        QuiteTimeTimer.unsubscribeFromTimer(timerListener)
-        timerListeners.remove(timerListener)
-        root.removeView(view)
-        layoutProvider.itemRemoved()
-    }
 
     private fun createTimerListener(remainingQuiteTime: TextView, quiteTimeRemaining: RemainingQuiteTime) = object : QuiteTimeTimerListener {
-        override fun onTick(): Int? {
-            var shouldRemoveIndex: Int? = null
 
+        override fun onTick() {
             quiteTimeRemaining.decrementSecondsRemainig()
             remainingQuiteTime.text = quiteTimeRemaining.formattedTimeRemaining
-            if (quiteTimeRemaining.isFinished) {
-                val quitePosition = remainingQuiteTimeList.indexOf(quiteTimeRemaining)
-                remainingQuiteTimeList.remove(quiteTimeRemaining)
-                root.removeViewAt(quitePosition + 1)
-                shouldRemoveIndex = quitePosition
-                layoutProvider.itemRemoved()
-            }
-
-            return shouldRemoveIndex
         }
+
+        override fun onFinished(index: Int) {
+            remainingQuiteTimeList.remove(quiteTimeRemaining)
+            root.removeViewAt(index + 1)
+            layoutProvider.itemRemoved()
+        }
+
+        override fun isFinished() = quiteTimeRemaining.isFinished
+
+        override fun isStopped() = quiteTimeRemaining.stopped
+
 
     }
 

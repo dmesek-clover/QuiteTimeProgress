@@ -4,7 +4,10 @@ import android.os.CountDownTimer
 import java.util.LinkedList
 
 interface QuiteTimeTimerListener {
-    fun onTick(): Int?
+    fun onTick()
+    fun onFinished(index: Int)
+    fun isFinished(): Boolean
+    fun isStopped(): Boolean
 }
 
 object QuiteTimeTimer {
@@ -12,26 +15,35 @@ object QuiteTimeTimer {
     private const val millisInSecond = 1000
 
     private val timer: CountDownTimer
-    private var timerListeners = LinkedList<QuiteTimeTimerListener>()
+    private val timerListeners = LinkedList<QuiteTimeTimerListener>()
 
 
     init {
         timer = object : CountDownTimer(java.lang.Long.MAX_VALUE, millisInSecond.toLong()) {
             override fun onTick(l: Long) {
-                var removePosition: Int? = null
+                var finishedTimerListener: QuiteTimeTimerListener? = null
+                var stoppedTimerListener: QuiteTimeTimerListener? = null
                 for (timerListener in timerListeners) {
-                    if (removePosition == null) {
-                        removePosition = timerListener.onTick()
-                    } else {
-                        timerListener.onTick()
+                    timerListener.onTick()
+                    if(timerListener.isFinished()) {
+                        finishedTimerListener = timerListener
+                    }
+                    if(timerListener.isStopped()) {
+                        stoppedTimerListener = timerListener
                     }
                 }
+                if(finishedTimerListener != null) {
+                    val index = timerListeners.indexOf(finishedTimerListener)
 
-                if (removePosition != null) {
-                    //unsubscribed, so that the timer can stop ticking if no one is listening
-                    try {
-                        unsubscribeFromTimer(timerListeners[removePosition ?: 100])
-                    } catch (ignore: IndexOutOfBoundsException) {}
+                    unsubscribeFromTimer(finishedTimerListener)
+                    finishedTimerListener.onFinished(index)
+                }
+
+                if(stoppedTimerListener != null) {
+                    val index = timerListeners.indexOf(stoppedTimerListener)
+
+                    unsubscribeFromTimer(stoppedTimerListener)
+                    stoppedTimerListener.onFinished(index)
                 }
             }
 
@@ -41,17 +53,23 @@ object QuiteTimeTimer {
         }
     }
 
+    fun resetTimer() {
+        for(timerListener in timerListeners) {
+            unsubscribeFromTimer(timerListener)
+        }
+    }
+
     fun subscribeToTimer(quiteTimeTimerListener: QuiteTimeTimerListener) {
-        if (timerListeners.isEmpty()) {
+        timerListeners.add(quiteTimeTimerListener)
+        if (timerListeners.size == 1) {
             timer.start()
         }
-        timerListeners.add(quiteTimeTimerListener)
     }
 
     fun unsubscribeFromTimer(quiteTimeTimerListener: QuiteTimeTimerListener) {
-        timerListeners.remove(quiteTimeTimerListener)
-        if (timerListeners.isEmpty()) {
+        if (timerListeners.size == 1) {
             timer.cancel()
         }
+        timerListeners.remove(quiteTimeTimerListener)
     }
 }

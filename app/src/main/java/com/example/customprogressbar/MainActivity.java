@@ -51,13 +51,13 @@ public class MainActivity extends AppCompatActivity {
 //
         quiteTimeRemainingAdapter.addAllQuiteTimeRemaining(Arrays.asList(
                 new RemainingQuiteTime(
-                        Arrays.asList(new QuiteTimeUser("User1 big userrr eee", getResources().getDrawable(R.drawable.circle)),
-                                        new QuiteTimeUser("User2", getResources().getDrawable(R.drawable.circle)),
+                        Arrays.asList(
+                                new QuiteTimeUser("User1 big userrr eee", getResources().getDrawable(R.drawable.circle)),
+                                new QuiteTimeUser("User2", getResources().getDrawable(R.drawable.circle)),
                                 new QuiteTimeUser("User6", getResources().getDrawable(R.drawable.circle)),
                                 new QuiteTimeUser("User6", getResources().getDrawable(R.drawable.circle)),
                                 new QuiteTimeUser("User6", getResources().getDrawable(R.drawable.circle)),
                                 new QuiteTimeUser("User6", getResources().getDrawable(R.drawable.circle))), 10),
-
 
                 new RemainingQuiteTime(
                         Arrays.asList(new QuiteTimeUser("User4", getResources().getDrawable(R.drawable.circle))),
