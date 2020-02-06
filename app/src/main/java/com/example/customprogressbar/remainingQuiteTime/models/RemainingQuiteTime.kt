@@ -1,7 +1,7 @@
 package com.example.customprogressbar.remainingQuiteTime.models
 
 class RemainingQuiteTime constructor(
-        val quiteTimeUsers: List<QuiteTimeUser>,
+        val quiteTimeUsers: ArrayList<QuiteTimeUser>,
         private var secondsRemaining: Int = 0) {
 
     companion object {

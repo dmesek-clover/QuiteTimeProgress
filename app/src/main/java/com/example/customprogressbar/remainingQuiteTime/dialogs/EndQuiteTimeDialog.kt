@@ -11,9 +11,19 @@ import com.example.customprogressbar.R
 import com.example.customprogressbar.remainingQuiteTime.models.QuiteTimeUser
 
 
+interface EndQuiteTimeDialogListener {
+    fun removePressed(quiteTimeUser: QuiteTimeUser)
+}
+
 class EndQuiteTimeDialog(
-        private val userList: List<QuiteTimeUser>
-) : DialogFragment() {
+        private val userList: List<QuiteTimeUser>,
+        private val listener: EndQuiteTimeDialogListener
+) : DialogFragment(), EndQuiteTimeDialogListener {
+
+    override fun removePressed(quiteTimeUser: QuiteTimeUser) {
+        listener.removePressed(quiteTimeUser)
+    }
+
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return activity?.let {
             val builder = AlertDialog.Builder(it)
@@ -34,7 +44,7 @@ class EndQuiteTimeDialog(
 
         dialog.findViewById<RecyclerView>(R.id.rv_userList).apply {
             layoutManager = LinearLayoutManager(dialog.context)
-            adapter = EndQuiteTimeAdapter(userList)
+            adapter = EndQuiteTimeAdapter(userList, listener)
         }
         dialog.findViewById<ImageButton>(R.id.btn_close).apply {
             setOnClickListener { dialog.dismiss() }

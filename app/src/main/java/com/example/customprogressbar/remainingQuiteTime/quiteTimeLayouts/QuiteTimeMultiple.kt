@@ -1,6 +1,5 @@
 package com.example.customprogressbar.remainingQuiteTime.quiteTimeLayouts
 
-import android.content.Context
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -8,13 +7,19 @@ import android.widget.GridLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import com.example.customprogressbar.R
-import com.example.customprogressbar.remainingQuiteTime.*
+import com.example.customprogressbar.remainingQuiteTime.LayoutChangedListener
 import com.example.customprogressbar.remainingQuiteTime.QuiteTimeGridUserLayout
+import com.example.customprogressbar.remainingQuiteTime.QuiteTimeTimer
+import com.example.customprogressbar.remainingQuiteTime.QuiteTimeTimerListener
+import com.example.customprogressbar.remainingQuiteTime.dialogs.EndQuiteTimeDialog
+import com.example.customprogressbar.remainingQuiteTime.dialogs.EndQuiteTimeDialogListener
+import com.example.customprogressbar.remainingQuiteTime.models.QuiteTimeUser
 import com.example.customprogressbar.remainingQuiteTime.models.RemainingQuiteTime
 
 class QuiteTimeMultiple(
-        context: Context,
+        context: AppCompatActivity,
         root: LinearLayout,
         layoutProvider: LayoutChangedListener,
         remainingQuiteTimeList: ArrayList<RemainingQuiteTime>
@@ -64,13 +69,19 @@ class QuiteTimeMultiple(
         val timerListener = createTimerListener(remainingQuiteTime, quiteTimeRemaining)
         QuiteTimeTimer.subscribeToTimer(timerListener)
 
-        QuiteTimeGridUserLayout(context, gridUsers, quiteTimeRemaining.quiteTimeUsers, R.layout.quite_time_multiple_user_item)
+        val gridLayout = QuiteTimeGridUserLayout(context, gridUsers,
+                quiteTimeRemaining.quiteTimeUsers, R.layout.quite_time_multiple_user_item)
 
         stopButton.setOnClickListener {
             if (quiteTimeRemaining.quiteTimeUsers.size == 1) {
                 quiteTimeRemaining.stopped = true
             } else {
-                //
+                EndQuiteTimeDialog(quiteTimeRemaining.quiteTimeUsers, object : EndQuiteTimeDialogListener {
+                    override fun removePressed(quiteTimeUser: QuiteTimeUser) {
+                        gridLayout.deleteQuiteTimeUser(quiteTimeUser)
+                    }
+
+                }).show(context.supportFragmentManager, "EndQuiteTimeDialog")
             }
         }
     }

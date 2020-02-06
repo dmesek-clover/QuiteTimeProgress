@@ -18,12 +18,14 @@
 
     <TextView
         android:id="@+id/tv_name"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:textSize="20sp"
+        android:layout_marginEnd="5dp"
         android:text="TextView"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/iv_picture"
+        app:layout_constraintEnd_toStartOf="@+id/btn_stop"
         app:layout_constraintStart_toEndOf="@+id/iv_picture"
         app:layout_constraintTop_toTopOf="@+id/iv_picture" />
 

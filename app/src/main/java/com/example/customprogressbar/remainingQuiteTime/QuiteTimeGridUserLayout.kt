@@ -14,7 +14,7 @@ import com.example.customprogressbar.remainingQuiteTime.models.QuiteTimeUser
 internal class QuiteTimeGridUserLayout(
         context: Context,
         private val root: GridLayout,
-        private val quiteTimeUsers: List<QuiteTimeUser>,
+        private val quiteTimeUsers: ArrayList<QuiteTimeUser>,
         private val layoutId: Int
 ) {
 
@@ -22,6 +22,11 @@ internal class QuiteTimeGridUserLayout(
 
     init {
         updateData()
+    }
+
+    fun deleteQuiteTimeUser(quiteTimeUser: QuiteTimeUser) {
+        root.removeViewAt(quiteTimeUsers.indexOf(quiteTimeUser))
+        quiteTimeUsers.remove(quiteTimeUser)
     }
 
     @SuppressLint("InflateParams")

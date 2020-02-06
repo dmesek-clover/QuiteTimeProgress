@@ -10,7 +10,8 @@ import com.example.customprogressbar.R
 import com.example.customprogressbar.remainingQuiteTime.models.QuiteTimeUser
 
 class EndQuiteTimeAdapter(
-        private val userList: List<QuiteTimeUser>
+        private val userList: List<QuiteTimeUser>,
+        private val listener: EndQuiteTimeDialogListener
 ) : RecyclerView.Adapter<EndQuiteTimeAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -26,7 +27,8 @@ class EndQuiteTimeAdapter(
         holder.picture.setImageDrawable(userList[position].icon)
         holder.name.text = userList[position].name
         holder.stop.setOnClickListener {
-            //nothing for now
+            listener.removePressed(userList[position])
+            notifyDataSetChanged()
         }
         if(position == userList.size - 1) {
             holder.separator.visibility = View.GONE
