@@ -7,6 +7,7 @@ import com.example.customprogressbar.remainingQuiteTime.models.RemainingQuiteTim
 import com.example.customprogressbar.remainingQuiteTime.quiteTimeLayouts.QuiteTimeEmpty
 import com.example.customprogressbar.remainingQuiteTime.quiteTimeLayouts.QuiteTimeLayout
 import com.example.customprogressbar.remainingQuiteTime.quiteTimeLayouts.QuiteTimeMultiple
+import com.example.customprogressbar.remainingQuiteTime.quiteTimeLayouts.QuiteTimeSingle
 
 interface LayoutChangedListener{
     fun itemRemoved()
@@ -25,28 +26,24 @@ class QuiteTimeLayoutProvider (
     fun addQuiteTimeRemaining(element: RemainingQuiteTime) {
         quiteTimeRemainingList.add(element)
         currentLayout.addedSingle(element)
-        quiteTimeRemainingListChanged(increment = 1)
+        quiteTimeRemainingListChanged()
 
     }
 
     fun addAllQuiteTimeRemaining(list: List<RemainingQuiteTime>) {
         quiteTimeRemainingList.addAll(list)
         currentLayout.addedMultiple(list)
-        quiteTimeRemainingListChanged(increment = list.size)
+        quiteTimeRemainingListChanged()
 
     }
 
     override fun itemRemoved() {
-        quiteTimeRemainingListChanged(increment = null)
+        quiteTimeRemainingListChanged()
     }
 
-    private fun quiteTimeRemainingListChanged(increment: Int?) {
+    private fun quiteTimeRemainingListChanged() {
         currentLayoutProviderState.apply {
-            val newState = if(increment == null) {
-                decrementItemCount()
-            } else {
-                incrementItemCountBy(increment)
-            }
+            val newState = LayoutProviderState.fromInt(quiteTimeRemainingList.size)
 
             if(newState != this) {
                 currentLayoutProviderState = newState
@@ -57,10 +54,11 @@ class QuiteTimeLayoutProvider (
 
     private fun layoutProviderStateChanged() {
         currentLayout.detachLayout()
+        root.removeAllViews()
 
         currentLayout = when(currentLayoutProviderState) {
             LayoutProviderState.EMPTY -> QuiteTimeEmpty(context, root, this, quiteTimeRemainingList)
-            LayoutProviderState.SINGLE -> QuiteTimeMultiple(context, root, this, quiteTimeRemainingList)
+            LayoutProviderState.SINGLE -> QuiteTimeSingle(context, root, this, quiteTimeRemainingList)
             LayoutProviderState.MULTIPLE -> QuiteTimeMultiple(context, root, this, quiteTimeRemainingList)
         }
     }

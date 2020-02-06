@@ -14,6 +14,7 @@ object QuiteTimeTimer {
     private val timer: CountDownTimer
     private var timerListeners = LinkedList<QuiteTimeTimerListener>()
 
+
     init {
         timer = object : CountDownTimer(java.lang.Long.MAX_VALUE, millisInSecond.toLong()) {
             override fun onTick(l: Long) {
@@ -29,7 +30,7 @@ object QuiteTimeTimer {
                 if (removePosition != null) {
                     //unsubscribed, so that the timer can stop ticking if no one is listening
                     try {
-                        unsubscribeFromTimer(timerListeners[removePosition])
+                        unsubscribeFromTimer(timerListeners[removePosition ?: 100])
                     } catch (ignore: IndexOutOfBoundsException) {}
                 }
             }

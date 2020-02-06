@@ -12,8 +12,8 @@
     <ImageView
         android:id="@+id/iv_quite_time_user_icon"
         android:layout_gravity="center"
-        android:layout_width="60dp"
-        android:layout_height="60dp" />
+        android:layout_width="45dp"
+        android:layout_height="45dp" />
 
     <TextView
         android:id="@+id/tv_quite_time_user_name"

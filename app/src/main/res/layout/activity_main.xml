@@ -35,6 +35,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btn_quite_time_info" />
 
+
             <com.example.customprogressbar.quiteTimeStats.QuiteTimeStats
                 android:id="@+id/quite_time_stats_layout"
                 android:layout_width="match_parent"

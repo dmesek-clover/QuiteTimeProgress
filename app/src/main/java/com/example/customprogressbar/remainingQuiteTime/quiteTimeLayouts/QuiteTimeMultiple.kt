@@ -1,6 +1,7 @@
 package com.example.customprogressbar.remainingQuiteTime.quiteTimeLayouts
 
 import android.content.Context
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.GridLayout
@@ -25,6 +26,7 @@ class QuiteTimeMultiple(
     private val timerListeners = arrayListOf<QuiteTimeTimerListener>()
 
     init {
+        createHeader()
         root.visibility = View.VISIBLE
         buildMultipleUsers(remainingQuiteTimeList)
     }
@@ -41,6 +43,14 @@ class QuiteTimeMultiple(
         for (timerListener in timerListeners) {
             QuiteTimeTimer.unsubscribeFromTimer(timerListener)
         }
+    }
+
+    private fun createHeader() {
+        val textView = TextView(context)
+        textView.gravity = Gravity.CENTER
+        textView.textSize = 20f
+        textView.text = "Quite Time ends in:"
+        root.addView(textView)
     }
 
     private fun buildMultipleUsers(list: List<RemainingQuiteTime>) {
@@ -60,7 +70,7 @@ class QuiteTimeMultiple(
         timerListeners.add(timerListener)
         QuiteTimeTimer.subscribeToTimer(timerListener)
 
-        QuiteTimeGridUserLayout(context, gridUsers, quiteTimeRemaining.quiteTimeUsers)
+        QuiteTimeGridUserLayout(context, gridUsers, quiteTimeRemaining.quiteTimeUsers, R.layout.quite_time_multiple_user_item)
 
         stopButton.setOnClickListener {
             if (quiteTimeRemaining.quiteTimeUsers.size == 1) {
@@ -88,7 +98,7 @@ class QuiteTimeMultiple(
             if (quiteTimeRemaining.isFinished) {
                 val quitePosition = remainingQuiteTimeList.indexOf(quiteTimeRemaining)
                 remainingQuiteTimeList.remove(quiteTimeRemaining)
-                root.removeViewAt(quitePosition)
+                root.removeViewAt(quitePosition + 1)
                 shouldRemoveIndex = quitePosition
                 layoutProvider.itemRemoved()
             }

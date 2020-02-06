@@ -14,7 +14,8 @@ import com.example.customprogressbar.remainingQuiteTime.models.QuiteTimeUser
 internal class QuiteTimeGridUserLayout(
         context: Context,
         private val root: GridLayout,
-        private val quiteTimeUsers: List<QuiteTimeUser>
+        private val quiteTimeUsers: List<QuiteTimeUser>,
+        private val layoutId: Int
 ) {
 
     private val layoutInflater: LayoutInflater = LayoutInflater.from(context)
@@ -27,7 +28,7 @@ internal class QuiteTimeGridUserLayout(
     private fun updateData() {
         root.removeAllViews()
         for (quiteTimeUser in quiteTimeUsers) {
-            val view = layoutInflater.inflate(R.layout.quite_time_multiple_user_item, null)
+            val view = layoutInflater.inflate(layoutId, null)
             populateView(view, quiteTimeUser)
             attachToLinearLayout(view)
         }

@@ -15,6 +15,7 @@ class QuiteTimeEmpty(
 ) : QuiteTimeLayout(context, root, layoutProvider, remainingQuiteTimeList) {
 
     init {
+        //implementation for now
         root.visibility = View.GONE
     }
 
