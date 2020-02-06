@@ -9,10 +9,8 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.example.customprogressbar.R
-import com.example.customprogressbar.remainingQuiteTime.LayoutChangedListener
+import com.example.customprogressbar.remainingQuiteTime.*
 import com.example.customprogressbar.remainingQuiteTime.QuiteTimeGridUserLayout
-import com.example.customprogressbar.remainingQuiteTime.QuiteTimeTimer
-import com.example.customprogressbar.remainingQuiteTime.QuiteTimeTimerListener
 import com.example.customprogressbar.remainingQuiteTime.models.RemainingQuiteTime
 
 class QuiteTimeMultiple(
@@ -72,7 +70,7 @@ class QuiteTimeMultiple(
             if (quiteTimeRemaining.quiteTimeUsers.size == 1) {
                 quiteTimeRemaining.stopped = true
             } else {
-                //show dialog
+                //
             }
         }
     }

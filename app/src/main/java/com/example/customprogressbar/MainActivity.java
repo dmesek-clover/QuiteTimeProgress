@@ -10,9 +10,9 @@ import com.example.customprogressbar.quiteTimeStats.models.DayOfWeek;
 import com.example.customprogressbar.quiteTimeStats.models.QuiteTime;
 import com.example.customprogressbar.quiteTimeStats.QuiteTimeStats;
 
+import com.example.customprogressbar.remainingQuiteTime.dialogs.EndQuiteTimeDialog;
 import com.example.customprogressbar.remainingQuiteTime.QuiteTimeLayoutProvider;
 import com.example.customprogressbar.remainingQuiteTime.models.QuiteTimeUser;
-import com.example.customprogressbar.remainingQuiteTime.models.RemainingQuiteTime;
 
 import java.util.Arrays;
 import java.util.Random;
@@ -44,31 +44,37 @@ public class MainActivity extends AppCompatActivity {
         final LinearLayout quiteTimeRV = findViewById(R.id.ll_quite_time);
         final QuiteTimeLayoutProvider quiteTimeRemainingAdapter = new QuiteTimeLayoutProvider( this, quiteTimeRV);
 
-        final RemainingQuiteTime rqt = new RemainingQuiteTime(
-                Arrays.asList(new QuiteTimeUser("User20", getResources().getDrawable(R.drawable.circle))),
-                6000);
-        quiteTimeRemainingAdapter.addQuiteTimeRemaining(rqt);
+//        final RemainingQuiteTime rqt = new RemainingQuiteTime(
+//                Arrays.asList(new QuiteTimeUser("User20", getResources().getDrawable(R.drawable.circle))),
+//                6000);
+//        quiteTimeRemainingAdapter.addQuiteTimeRemaining(rqt);
+////
+//        quiteTimeRemainingAdapter.addAllQuiteTimeRemaining(Arrays.asList(
+//                new RemainingQuiteTime(
+//                        Arrays.asList(
+//                                new QuiteTimeUser("User1 big userrr eee", getResources().getDrawable(R.drawable.circle)),
+//                                new QuiteTimeUser("User2", getResources().getDrawable(R.drawable.circle)),
+//                                new QuiteTimeUser("User6", getResources().getDrawable(R.drawable.circle)),
+//                                new QuiteTimeUser("User6", getResources().getDrawable(R.drawable.circle)),
+//                                new QuiteTimeUser("User6", getResources().getDrawable(R.drawable.circle)),
+//                                new QuiteTimeUser("User6", getResources().getDrawable(R.drawable.circle))), 10),
 //
-        quiteTimeRemainingAdapter.addAllQuiteTimeRemaining(Arrays.asList(
-                new RemainingQuiteTime(
-                        Arrays.asList(
+//                new RemainingQuiteTime(
+//                        Arrays.asList(new QuiteTimeUser("User4", getResources().getDrawable(R.drawable.circle))),
+//                        15),
+//                new RemainingQuiteTime(
+//                        Arrays.asList(new QuiteTimeUser("User5", getResources().getDrawable(R.drawable.circle))),
+//                        20)
+//
+//                )
+//
+//        );
+        EndQuiteTimeDialog dialog = new EndQuiteTimeDialog(Arrays.asList(
                                 new QuiteTimeUser("User1 big userrr eee", getResources().getDrawable(R.drawable.circle)),
-                                new QuiteTimeUser("User2", getResources().getDrawable(R.drawable.circle)),
-                                new QuiteTimeUser("User6", getResources().getDrawable(R.drawable.circle)),
-                                new QuiteTimeUser("User6", getResources().getDrawable(R.drawable.circle)),
-                                new QuiteTimeUser("User6", getResources().getDrawable(R.drawable.circle)),
-                                new QuiteTimeUser("User6", getResources().getDrawable(R.drawable.circle))), 10),
+                                new QuiteTimeUser("User2", getResources().getDrawable(R.drawable.circle))));
 
-                new RemainingQuiteTime(
-                        Arrays.asList(new QuiteTimeUser("User4", getResources().getDrawable(R.drawable.circle))),
-                        15),
-                new RemainingQuiteTime(
-                        Arrays.asList(new QuiteTimeUser("User5", getResources().getDrawable(R.drawable.circle))),
-                        20)
+        dialog.show(getSupportFragmentManager(), "EndQuiteTimeDialog");
 
-                )
-
-        );
 
 
 
