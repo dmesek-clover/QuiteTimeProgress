@@ -8,6 +8,8 @@
     android:layout_height="match_parent"
     tools:context=".SomeActivity">
 
+
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -54,15 +56,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/quite_time_stats_layout" />
 
-            <Button
-                android:id="@+id/button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Reset"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/button2" />
 
             <ImageView
                 android:id="@+id/iv_picture"
@@ -82,6 +75,7 @@
                 android:layout_height="wrap_content"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
+                android:fontFamily="@font/roboto_bold"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/rounded_colored_rectangle"
                 android:text="Learn about Quite Time"
@@ -103,9 +97,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/toolbar"
-        android:background="@drawable/bar"
+        android:background="@drawable/half_circle"
         android:layout_width="match_parent"
         android:layout_height="100dp" />
+
+
 
 
 

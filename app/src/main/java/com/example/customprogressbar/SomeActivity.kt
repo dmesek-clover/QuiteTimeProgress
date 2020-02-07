@@ -10,8 +10,10 @@ import com.example.customprogressbar.quiteTimeStats.models.QuiteTime
 import com.example.customprogressbar.remainingQuiteTime.QuiteTimeLayoutProvider
 import com.example.customprogressbar.remainingQuiteTime.models.QuiteTimeUser
 import com.example.customprogressbar.remainingQuiteTime.models.RemainingQuiteTime
+import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.random.Random
 
 class SomeActivity : AppCompatActivity() {
 
@@ -19,7 +21,7 @@ class SomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val quiteTimeStats = findViewById(R.id.quite_time_stats_layout) as QuiteTimeStats
+        val quiteTimeStats = findViewById<QuiteTimeStats>(R.id.quite_time_stats_layout)
         quiteTimeStats.setTodayDayOfWeek(DayOfWeek.TUESDAY)
         quiteTimeStats.setTodayMaxProgress(120)
         quiteTimeStats.setPreviousWeekQuiteTime(listOf(
@@ -32,7 +34,9 @@ class SomeActivity : AppCompatActivity() {
                 QuiteTime(120, 80, null)))
 
 
-        val rand = Random()
+        button2.setOnClickListener {
+            quiteTimeStats.updateTodayProgress(Random.nextInt(0,120))
+        }
 
         val quiteTimeRV = findViewById(R.id.ll_quite_time) as LinearLayout
         val quiteTimeRemainingAdapter = QuiteTimeLayoutProvider(this, quiteTimeRV)
