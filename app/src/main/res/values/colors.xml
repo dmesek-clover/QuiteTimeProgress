@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimary">#5bc4bc</color>
+
+    <color name="colorToolbarGradientStart">#5bc5bc</color>
+    <color name="colorToolbarGradientEnd">#5aacbf</color>
+
+    <color name="colorProgressGradientStart">#4eaac0</color>
+    <color name="colorProgressGradientEnd">#51d2c7</color>
+
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
 </resources>

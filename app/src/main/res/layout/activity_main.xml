@@ -75,10 +75,11 @@
                 android:layout_height="wrap_content"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
+                android:textSize="17sp"
                 android:fontFamily="@font/roboto_bold"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/rounded_colored_rectangle"
-                android:text="Learn about Quite Time"
+                android:text="Start Quite Time"
                 android:textAllCaps="false"
                 android:textColor="#ffffff"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -99,7 +100,7 @@
         android:id="@+id/toolbar"
         android:background="@drawable/half_circle"
         android:layout_width="match_parent"
-        android:layout_height="100dp" />
+        android:layout_height="85dp" />
 
 
 
