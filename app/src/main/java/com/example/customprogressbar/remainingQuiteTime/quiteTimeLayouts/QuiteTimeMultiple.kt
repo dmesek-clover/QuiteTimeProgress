@@ -1,7 +1,5 @@
 package com.example.customprogressbar.remainingQuiteTime.quiteTimeLayouts
 
-import android.graphics.Color
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.GridLayout
@@ -9,8 +7,6 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.marginTop
-import com.example.customprogressbar.R
 import com.example.customprogressbar.remainingQuiteTime.LayoutChangedListener
 import com.example.customprogressbar.remainingQuiteTime.QuiteTimeGridUserLayout
 import com.example.customprogressbar.remainingQuiteTime.QuiteTimeTimer
@@ -19,6 +15,8 @@ import com.example.customprogressbar.remainingQuiteTime.dialogs.EndQuiteTimeDial
 import com.example.customprogressbar.remainingQuiteTime.dialogs.EndQuiteTimeDialogListener
 import com.example.customprogressbar.remainingQuiteTime.models.QuiteTimeUser
 import com.example.customprogressbar.remainingQuiteTime.models.RemainingQuiteTime
+import com.example.customprogressbar.R
+
 
 class QuiteTimeMultiple(
         context: AppCompatActivity,
@@ -48,12 +46,7 @@ class QuiteTimeMultiple(
     }
 
     private fun createHeader() {
-        TextView(context).apply {
-            gravity = Gravity.CENTER
-            textSize = 17f
-            setTextColor(Color.parseColor("#7c7c7c"))
-            text = "Quite Time ends in:"
-        }.also {
+        layoutInflater.inflate(R.layout.quite_time_multiple_remaining_header, null).also {
             root.addView(it)
         }
     }

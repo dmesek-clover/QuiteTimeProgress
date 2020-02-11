@@ -33,17 +33,11 @@ object QuiteTimeTimer {
                     }
                 }
                 if(finishedTimerListener != null) {
-                    val index = timerListeners.indexOf(finishedTimerListener)
-
-                    unsubscribeFromTimer(finishedTimerListener)
-                    finishedTimerListener.onFinished(index)
+                    handleFinishedListener(finishedTimerListener)
                 }
 
                 if(stoppedTimerListener != null) {
-                    val index = timerListeners.indexOf(stoppedTimerListener)
-
-                    unsubscribeFromTimer(stoppedTimerListener)
-                    stoppedTimerListener.onFinished(index)
+                    handleStoppedListener(stoppedTimerListener)
                 }
             }
 
@@ -71,5 +65,19 @@ object QuiteTimeTimer {
             timer.cancel()
         }
         timerListeners.remove(quiteTimeTimerListener)
+    }
+
+    private fun handleFinishedListener(finishedTimerListener: QuiteTimeTimerListener) {
+        val index = timerListeners.indexOf(finishedTimerListener)
+
+        unsubscribeFromTimer(finishedTimerListener)
+        finishedTimerListener.onFinished(index)
+    }
+
+    private fun handleStoppedListener(stoppedTimerListener: QuiteTimeTimerListener) {
+        val index = timerListeners.indexOf(stoppedTimerListener)
+
+        unsubscribeFromTimer(stoppedTimerListener)
+        stoppedTimerListener.onFinished(index)
     }
 }

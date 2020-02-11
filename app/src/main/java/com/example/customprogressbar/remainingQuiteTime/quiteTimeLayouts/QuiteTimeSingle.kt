@@ -80,7 +80,6 @@ class QuiteTimeSingle(
 
         var allowModification = true
 
-        //disgusting
         override fun onTick(){
             if(allowModification) {
                 quiteTimeRemaining.decrementSecondsRemainig()
@@ -90,6 +89,7 @@ class QuiteTimeSingle(
             }
         }
 
+        //if this is not added, some problems occur when switching from multiple to single layout
         private fun wait500ms() {
             object : CountDownTimer(500, 500) {
                 override fun onFinish() {
