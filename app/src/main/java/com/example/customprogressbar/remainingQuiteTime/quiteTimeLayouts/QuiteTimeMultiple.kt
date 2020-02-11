@@ -1,5 +1,6 @@
 package com.example.customprogressbar.remainingQuiteTime.quiteTimeLayouts
 
+import android.graphics.Color
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.marginTop
 import com.example.customprogressbar.R
 import com.example.customprogressbar.remainingQuiteTime.LayoutChangedListener
 import com.example.customprogressbar.remainingQuiteTime.QuiteTimeGridUserLayout
@@ -46,11 +48,14 @@ class QuiteTimeMultiple(
     }
 
     private fun createHeader() {
-        val textView = TextView(context)
-        textView.gravity = Gravity.CENTER
-        textView.textSize = 20f
-        textView.text = "Quite Time ends in:"
-        root.addView(textView)
+        TextView(context).apply {
+            gravity = Gravity.CENTER
+            textSize = 17f
+            setTextColor(Color.parseColor("#7c7c7c"))
+            text = "Quite Time ends in:"
+        }.also {
+            root.addView(it)
+        }
     }
 
     private fun buildMultipleUsers(list: List<RemainingQuiteTime>) {

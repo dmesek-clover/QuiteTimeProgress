@@ -11,8 +11,8 @@
 
     <GridLayout
         android:id="@+id/gv_quite_time_users"
-        android:paddingStart="5dp"
-        android:paddingEnd="5dp"
+        android:paddingStart="2dp"
+        android:paddingEnd="2dp"
         android:columnCount="2"
         android:layout_weight="4"
         android:layout_width="0dp"

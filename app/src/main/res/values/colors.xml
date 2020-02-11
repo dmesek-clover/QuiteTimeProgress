@@ -8,6 +8,9 @@
     <color name="colorProgressGradientStart">#4eaac0</color>
     <color name="colorProgressGradientEnd">#51d2c7</color>
 
+    <color name="shadowColor">#c0c0c0</color>
+
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="label_color">#7a7a7a</color>
 </resources>

@@ -9,11 +9,12 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/iv_quite_time_user_icon"
+        android:src="@drawable/dummy"
         android:layout_gravity="center"
-        android:layout_width="36dp"
-        android:layout_height="45dp" />
+        android:layout_width="35dp"
+        android:layout_height="35dp" />
 
     <TextView
         android:id="@+id/tv_quite_time_user_name"

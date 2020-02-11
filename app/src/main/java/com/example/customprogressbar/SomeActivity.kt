@@ -2,8 +2,10 @@ package com.example.customprogressbar
 
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.view.WindowManager
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.example.customprogressbar.quiteTimeStats.QuiteTimeStats
 import com.example.customprogressbar.quiteTimeStats.models.DayOfWeek
 import com.example.customprogressbar.quiteTimeStats.models.QuiteTime
@@ -20,6 +22,10 @@ class SomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        window.statusBarColor = ContextCompat.getColor(this, android.R.color.transparent)
+        window.setBackgroundDrawableResource(R.drawable.half_circle)
 
         val quiteTimeStats = findViewById<QuiteTimeStats>(R.id.quite_time_stats_layout)
         quiteTimeStats.setTodayDayOfWeek(DayOfWeek.TUESDAY)
@@ -42,19 +48,19 @@ class SomeActivity : AppCompatActivity() {
         val quiteTimeRemainingAdapter = QuiteTimeLayoutProvider(this, quiteTimeRV)
 
         val rqt = RemainingQuiteTime(
-                arrayListOf(QuiteTimeUser("User20", getResources().getDrawable(R.drawable.circle))),
+                arrayListOf(QuiteTimeUser("User20", getResources().getDrawable(R.drawable.dummy7))),
                 6000)
         quiteTimeRemainingAdapter.addQuiteTimeRemaining(rqt)
         //
         quiteTimeRemainingAdapter.addAllQuiteTimeRemaining(Arrays.asList(
                 RemainingQuiteTime(
                         arrayListOf(
-                                QuiteTimeUser("User1 big userrr eee", getResources().getDrawable(R.drawable.circle)),
-                                QuiteTimeUser("User2", getResources().getDrawable(R.drawable.circle)),
-                                QuiteTimeUser("User6", getResources().getDrawable(R.drawable.circle)),
-                                QuiteTimeUser("User6", getResources().getDrawable(R.drawable.circle)),
-                                QuiteTimeUser("User6", getResources().getDrawable(R.drawable.circle)),
-                                QuiteTimeUser("User6", getResources().getDrawable(R.drawable.circle))), 1000)
+                                QuiteTimeUser("User1 big userrr eee", getResources().getDrawable(R.drawable.dummy)),
+                                QuiteTimeUser("User2", getResources().getDrawable(R.drawable.dummy2)),
+                                QuiteTimeUser("User6", getResources().getDrawable(R.drawable.dummy3)),
+                                QuiteTimeUser("User6", getResources().getDrawable(R.drawable.dummy4)),
+                                QuiteTimeUser("User6", getResources().getDrawable(R.drawable.dummy5)),
+                                QuiteTimeUser("User6", getResources().getDrawable(R.drawable.dummy6))), 1000)
 
                 //                new RemainingQuiteTime(
                 //                        Arrays.asList(new QuiteTimeUser("User4", getResources().getDrawable(R.drawable.circle))),

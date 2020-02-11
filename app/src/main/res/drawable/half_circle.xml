@@ -1,7 +1,7 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:left="-220dp"
-        android:right="-220dp"
+        android:left="-200dp"
+        android:right="-200dp"
         android:top="-200dp">
         <shape xmlns:android="http://schemas.android.com/apk/res/android"
             android:shape="oval">
