@@ -10,15 +10,13 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.example.customprogressbar.remainingQuiteTime.LayoutChangedListener
-import com.example.customprogressbar.remainingQuiteTime.QuiteTimeGridUserLayout
-import com.example.customprogressbar.remainingQuiteTime.QuiteTimeTimer
-import com.example.customprogressbar.remainingQuiteTime.QuiteTimeTimerListener
 import com.example.customprogressbar.remainingQuiteTime.dialogs.EndQuiteTimeDialog
 import com.example.customprogressbar.remainingQuiteTime.dialogs.EndQuiteTimeDialogListener
 import com.example.customprogressbar.remainingQuiteTime.models.QuiteTimeUser
 import com.example.customprogressbar.remainingQuiteTime.models.RemainingQuiteTime
 import com.example.customprogressbar.R
+import com.example.customprogressbar.remainingQuiteTime.*
+import com.example.customprogressbar.remainingQuiteTime.QuiteTimeGridUserLayout
 
 
 class QuiteTimeMultiple(
@@ -93,7 +91,7 @@ class QuiteTimeMultiple(
         override fun onTick() {
             quiteTimeRemaining.decrementSecondsRemainig()
 
-            remainingQuiteTime.text = quiteTimeRemaining.formattedTimeRemaining
+            remainingQuiteTime.text = TimeFormatter.formatRemainingTime(quiteTimeRemaining.secondsRemaining)
         }
 
         override fun onFinished(index: Int) {

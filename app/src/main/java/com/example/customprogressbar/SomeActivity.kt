@@ -1,7 +1,6 @@
 package com.example.customprogressbar
 
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.view.WindowManager
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
@@ -9,12 +8,11 @@ import androidx.core.content.ContextCompat
 import com.example.customprogressbar.quiteTimeStats.QuiteTimeStats
 import com.example.customprogressbar.quiteTimeStats.models.DayOfWeek
 import com.example.customprogressbar.quiteTimeStats.models.QuiteTime
-import com.example.customprogressbar.remainingQuiteTime.QuiteTimeLayoutProvider
+import com.example.customprogressbar.remainingQuiteTime.QuiteTimeGroupTimer
 import com.example.customprogressbar.remainingQuiteTime.models.QuiteTimeUser
 import com.example.customprogressbar.remainingQuiteTime.models.RemainingQuiteTime
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
-import kotlin.collections.ArrayList
 import kotlin.random.Random
 
 class SomeActivity : AppCompatActivity() {
@@ -45,7 +43,7 @@ class SomeActivity : AppCompatActivity() {
         }
 
         val quiteTimeRV = findViewById(R.id.ll_quite_time) as LinearLayout
-        val quiteTimeRemainingAdapter = QuiteTimeLayoutProvider(this, quiteTimeRV)
+        val quiteTimeRemainingAdapter = QuiteTimeGroupTimer(this, quiteTimeRV)
 
         val rqt = RemainingQuiteTime(
                 arrayListOf(QuiteTimeUser("User20", getResources().getDrawable(R.drawable.dummy7))),

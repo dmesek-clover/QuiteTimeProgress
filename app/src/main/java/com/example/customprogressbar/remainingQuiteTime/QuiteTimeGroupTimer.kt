@@ -1,8 +1,10 @@
 package com.example.customprogressbar.remainingQuiteTime
 
 import android.app.Activity
+import android.util.AttributeSet
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.customprogressbar.remainingQuiteTime.models.LayoutProviderState
 import com.example.customprogressbar.remainingQuiteTime.models.RemainingQuiteTime
 import com.example.customprogressbar.remainingQuiteTime.quiteTimeLayouts.QuiteTimeEmpty
@@ -14,15 +16,20 @@ interface LayoutChangedListener{
     fun itemRemoved()
 }
 
-class QuiteTimeLayoutProvider (
+class QuiteTimeGroupTimer (
         private val context: AppCompatActivity,
-        private val root: LinearLayout
-) : LayoutChangedListener{
+        private val root: LinearLayout,
+        attrs: AttributeSet?
+) : ConstraintLayout(context, attrs), LayoutChangedListener{
 
     private val quiteTimeRemainingList = arrayListOf<RemainingQuiteTime>()
 
     private var currentLayoutProviderState = LayoutProviderState.EMPTY
     private var currentLayout: QuiteTimeLayout = QuiteTimeEmpty(context, root, this, quiteTimeRemainingList)
+
+    init {
+
+    }
 
     fun addQuiteTimeRemaining(element: RemainingQuiteTime) {
         quiteTimeRemainingList.add(element)
