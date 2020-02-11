@@ -1,5 +1,8 @@
 package com.example.customprogressbar.remainingQuiteTime.quiteTimeLayouts
 
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.RelativeSizeSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.GridLayout
@@ -89,6 +92,7 @@ class QuiteTimeMultiple(
 
         override fun onTick() {
             quiteTimeRemaining.decrementSecondsRemainig()
+
             remainingQuiteTime.text = quiteTimeRemaining.formattedTimeRemaining
         }
 

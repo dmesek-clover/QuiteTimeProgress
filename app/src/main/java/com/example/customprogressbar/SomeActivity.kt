@@ -56,6 +56,9 @@ class SomeActivity : AppCompatActivity() {
                 RemainingQuiteTime(
                         arrayListOf(
                                 QuiteTimeUser("User1 big userrr eee", getResources().getDrawable(R.drawable.dummy)),
+                                QuiteTimeUser("User1 ", getResources().getDrawable(R.drawable.dummy)),
+                                QuiteTimeUser("User1 ", getResources().getDrawable(R.drawable.dummy)),
+                                QuiteTimeUser("User1 ", getResources().getDrawable(R.drawable.dummy)),
                                 QuiteTimeUser("User2", getResources().getDrawable(R.drawable.dummy2)),
                                 QuiteTimeUser("User6", getResources().getDrawable(R.drawable.dummy3)),
                                 QuiteTimeUser("User6", getResources().getDrawable(R.drawable.dummy4)),

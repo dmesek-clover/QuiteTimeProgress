@@ -26,8 +26,9 @@
         android:layout_gravity="center"
         android:layout_width="0dp"
         android:text=""
-        android:textSize="26sp"
-        android:textColor="#000000"
+        android:textSize="18sp"
+        android:textColor="#383838"
+        android:fontFamily="@font/sfuidisplay_semibold"
         android:gravity="right"
         android:layout_height="wrap_content"/>
 
