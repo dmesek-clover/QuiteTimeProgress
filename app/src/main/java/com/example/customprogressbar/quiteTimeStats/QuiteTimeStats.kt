@@ -119,8 +119,12 @@ class QuiteTimeStats(context: Context, attrs: AttributeSet?) : ConstraintLayout(
         if (previousWeekQuiteTime == null) {
             previousWeekQuiteTime = ArrayList()
         }
-        require(previousWeekQuiteTime!!.size <= NUMBER_OF_DAYS_IN_WEEK) { "previousWeekQuiteTime list should contain at most $NUMBER_OF_DAYS_IN_WEEK items." }
-        checkNotNull(todayDayOfWeek) { "Please call setTodayDayOfWeek(DayOfWeek dayOfWeek)" + " before calling setPreviousWeekQuiteTime method." }
+        require(previousWeekQuiteTime!!.size <= NUMBER_OF_DAYS_IN_WEEK) {
+            "previousWeekQuiteTime list should contain at most $NUMBER_OF_DAYS_IN_WEEK items."
+        }
+        checkNotNull(todayDayOfWeek) {
+            "Please call setTodayDayOfWeek(DayOfWeek dayOfWeek)" + " before calling setPreviousWeekQuiteTime method."
+        }
 
         setDataForProgressBars()
     }

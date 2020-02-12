@@ -11,7 +11,9 @@ import com.example.customprogressbar.remainingQuiteTime.models.QuiteTimeUser
 
 class EndQuiteTimeAdapter(
         private val userList: List<QuiteTimeUser>,
-        private val listener: EndQuiteTimeDialogListener
+        private val listener: EndQuiteTimeDialogListener,
+        private val dismissListener: Runnable
+
 ) : RecyclerView.Adapter<EndQuiteTimeAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -29,6 +31,9 @@ class EndQuiteTimeAdapter(
         holder.stop.setOnClickListener {
             listener.removePressed(userList[position])
             notifyDataSetChanged()
+            if(userList.size == 1) {
+                dismissListener.run()
+            }
         }
         if(position == userList.size - 1) {
             holder.separator.visibility = View.GONE

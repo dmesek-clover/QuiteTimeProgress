@@ -2,19 +2,17 @@ package com.example.customprogressbar
 
 import android.os.Bundle
 import android.view.WindowManager
-import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.customprogressbar.quiteTimeStats.QuiteTimeStats
 import com.example.customprogressbar.quiteTimeStats.models.DayOfWeek
 import com.example.customprogressbar.quiteTimeStats.models.QuiteTime
-import com.example.customprogressbar.remainingQuiteTime.QuiteTimeGroupTimer
 import com.example.customprogressbar.remainingQuiteTime.models.QuiteTimeUser
 import com.example.customprogressbar.remainingQuiteTime.models.RemainingQuiteTime
 import kotlinx.android.synthetic.main.activity_main.*
-import java.util.*
 import kotlin.random.Random
 
+@Suppress("DEPRECATION")
 class SomeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,16 +37,16 @@ class SomeActivity : AppCompatActivity() {
 
 
         button2.setOnClickListener {
-            quiteTimeStats.updateTodayProgress(Random.nextInt(0,120))
+            quiteTimeStats.updateTodayProgress(Random.nextInt(0, 120))
         }
 
 
         val rqt = RemainingQuiteTime(
-                arrayListOf(QuiteTimeUser("User20", getResources().getDrawable(R.drawable.dummy7))),
+                arrayListOf(QuiteTimeUser("User20", resources.getDrawable(R.drawable.dummy7))),
                 6000)
         ll_quite_time.addQuiteTimeRemaining(rqt)
         //
-        ll_quite_time.addAllQuiteTimeRemaining(Arrays.asList(
+        ll_quite_time.addAllQuiteTimeRemaining(listOf(
                 RemainingQuiteTime(
                         arrayListOf(
                                 QuiteTimeUser("User1 big userrr eee", resources.getDrawable(R.drawable.dummy)),

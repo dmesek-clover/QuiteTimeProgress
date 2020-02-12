@@ -40,7 +40,7 @@ class EndQuiteTimeDialog(
 
         dialog.findViewById<RecyclerView>(R.id.rv_userList).apply {
             layoutManager = LinearLayoutManager(dialog.context)
-            adapter = EndQuiteTimeAdapter(userList, listener)
+            adapter = EndQuiteTimeAdapter(userList, listener, Runnable { dialog.dismiss() })
         }
         dialog.findViewById<ImageButton>(R.id.btn_close).apply {
             setOnClickListener { dialog.dismiss() }
