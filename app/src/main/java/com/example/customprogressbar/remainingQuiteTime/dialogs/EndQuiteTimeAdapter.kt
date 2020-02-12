@@ -26,19 +26,21 @@ class EndQuiteTimeAdapter(
     override fun getItemCount() = userList.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.picture.setImageDrawable(userList[position].icon)
-        holder.name.text = userList[position].name
-        holder.stop.setOnClickListener {
-            listener.removePressed(userList[position])
-            notifyDataSetChanged()
-            if(userList.size == 1) {
-                dismissListener.run()
+        holder.apply {
+            picture.setImageDrawable(userList[position].icon)
+            name.text = userList[position].name
+            stop.setOnClickListener {
+                listener.removePressed(userList[position])
+                notifyDataSetChanged()
+                if(userList.size == 1) {
+                    dismissListener.run()
+                }
             }
-        }
-        if(position == userList.size - 1) {
-            holder.separator.visibility = View.GONE
-        } else {
-            holder.separator.visibility = View.VISIBLE
+            if(position == userList.size - 1) {
+                separator.visibility = View.GONE
+            } else {
+                separator.visibility = View.VISIBLE
+            }
         }
     }
 

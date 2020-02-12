@@ -3,9 +3,6 @@ package com.example.customprogressbar.remainingQuiteTime
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.LinearLayout
-import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintLayout
-import com.example.customprogressbar.R
 import com.example.customprogressbar.remainingQuiteTime.models.LayoutProviderState
 import com.example.customprogressbar.remainingQuiteTime.models.RemainingQuiteTime
 import com.example.customprogressbar.remainingQuiteTime.quiteTimeLayouts.QuiteTimeEmpty

@@ -42,7 +42,7 @@ class QuiteTimeStats(context: Context, attrs: AttributeSet?) : ConstraintLayout(
     private var todayDayOfWeek: DayOfWeek? = null
     private var todayMaxProgress = DEFAULT_MAX
 
-    private var todayProgressBar: ProgressBar? = null
+    private lateinit var todayProgressBar: ProgressBar
     private var todayProgressText: TextView? = null
     private var todayMaxProgressText: TextView? = null
     private var previousWeekProgressBars: List<ConstraintLayout>? = null
@@ -63,6 +63,7 @@ class QuiteTimeStats(context: Context, attrs: AttributeSet?) : ConstraintLayout(
         val seventhProgressBar = findViewById<ConstraintLayout>(R.id.pb_quite_time_seventh)
 
         todayProgressBar = findViewById(R.id.pb_quite_time_today)
+        todayProgressBar.max = todayMaxProgress
         previousWeekProgressBars = listOf(seventhProgressBar, sixthProgressBar, fifthProgressBar,
                 fourthProgressBar, thirdProgressBar, secondProgressBar, firstProgressBar)
 
@@ -79,6 +80,7 @@ class QuiteTimeStats(context: Context, attrs: AttributeSet?) : ConstraintLayout(
 
     fun setTodayMaxProgress(todayMaxProgress: Int) {
         this.todayMaxProgress = todayMaxProgress
+        todayProgressBar.max = todayMaxProgress
     }
 
     fun setPreviousWeekQuiteTime(previousWeekQuiteTime: List<QuiteTime>) {
@@ -95,17 +97,25 @@ class QuiteTimeStats(context: Context, attrs: AttributeSet?) : ConstraintLayout(
         animationDuration = 700
     }
 
+    fun animateWeekProgress() {
+        val progressBars = ArrayList<ProgressBar>()
+        for (historyProgressBar in previousWeekProgressBars!!) {
+            val progressBar = historyProgressBar.findViewById<ProgressBar>(R.id.pb_quite_time_week)
+            progressBars.add(progressBar)
+        }
+
+        ProgressAnimator(progressBars, previousWeekQuiteTime!!).startAnimation()
+    }
 
     private fun initializeTodayData() {
-        todayProgressBar!!.max = todayMaxProgress
+        //todayProgressBar!!.max = todayMaxProgress
         val placeholder = context.getString(R.string.max_progress_today)
         todayMaxProgressText!!.text = String.format(placeholder, todayMaxProgress)
     }
 
     //used by ObjectAnimator
     private fun updateTodayData() {
-        val difference = this.todayIncrementProgress - todayQuiteTimeProgress
-        todayProgressBar!!.incrementProgressBy(difference)
+        todayProgressBar.progress = todayIncrementProgress
 
         todayQuiteTimeProgress = this.todayIncrementProgress
         todayProgressText!!.text = formatUsedAmount(todayQuiteTimeProgress)
@@ -144,7 +154,6 @@ class QuiteTimeStats(context: Context, attrs: AttributeSet?) : ConstraintLayout(
             setData(previousWeekProgressBars!![index], quiteTime)
         }
 
-        animateWeekProgress()
     }
 
     private fun getDayOfWeekBefore(lastQuiteTimeDayOfWeek: DayOfWeek?): DayOfWeek {
@@ -165,16 +174,6 @@ class QuiteTimeStats(context: Context, attrs: AttributeSet?) : ConstraintLayout(
 
         val dayOfWeek = quiteTime.dayOfWeek
         label.text = dayOfWeek?.description
-    }
-
-    private fun animateWeekProgress() {
-        val progressBars = ArrayList<ProgressBar>()
-        for (historyProgressBar in previousWeekProgressBars!!) {
-            val progressBar = historyProgressBar.findViewById<ProgressBar>(R.id.pb_quite_time_week)
-            progressBars.add(progressBar)
-        }
-
-        ProgressAnimator(progressBars, previousWeekQuiteTime!!).startAnimation()
     }
 
 }

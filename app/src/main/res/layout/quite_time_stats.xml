@@ -120,6 +120,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/ll_progress_bar_holder"
         android:layout_width="0dp"
         android:layout_height="80dp"
         android:layout_marginStart="30dp"

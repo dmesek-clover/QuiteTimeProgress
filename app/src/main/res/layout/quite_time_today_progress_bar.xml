@@ -5,8 +5,8 @@
     android:layout_height="180dp"
     android:background="@drawable/circle_shape_fat"
     android:progressDrawable="@drawable/circual_progress_bar_fat"
+    android:max="120"
     android:indeterminate="false"
     android:layout_margin="5dp"
-    android:max="100"
     android:progress="0"
     xmlns:android="http://schemas.android.com/apk/res/android" />

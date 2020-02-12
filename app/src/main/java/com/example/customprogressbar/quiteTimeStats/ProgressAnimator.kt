@@ -31,9 +31,9 @@ internal class ProgressAnimator(
     }
 
     private fun initializeProgressAnimators() {
-        for ((progressBarIndex, progressBar) in progressBars.withIndex()) {
+        for ((progressBarIndex, progressBar) in quiteTimeInfo.withIndex()) {
             val progress = quiteTimeInfo[progressBarIndex].usedAmount
-            progressAnimators.add(DayOfWeekProgress(progressBar, progress))
+            progressAnimators.add(DayOfWeekProgress(progressBars[progressBarIndex], progress))
         }
 
         for (animatorIndex in progressAnimators.indices) {
