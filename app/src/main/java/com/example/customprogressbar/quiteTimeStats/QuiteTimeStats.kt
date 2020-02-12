@@ -2,6 +2,7 @@ package com.example.customprogressbar.quiteTimeStats
 
 import android.animation.ObjectAnimator
 import android.content.Context
+import android.text.SpannableString
 import android.util.AttributeSet
 import android.view.animation.DecelerateInterpolator
 import android.widget.ProgressBar
@@ -11,6 +12,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.customprogressbar.R
 import com.example.customprogressbar.quiteTimeStats.models.DayOfWeek
 import com.example.customprogressbar.quiteTimeStats.models.QuiteTime
+import com.example.customprogressbar.remainingQuiteTime.TimeFormatter
 
 import java.util.ArrayList
 
@@ -61,10 +63,12 @@ class QuiteTimeStats(context: Context, attrs: AttributeSet?) : ConstraintLayout(
         val seventhProgressBar = findViewById<ConstraintLayout>(R.id.pb_quite_time_seventh)
 
         todayProgressBar = findViewById(R.id.pb_quite_time_today)
-
         previousWeekProgressBars = listOf(seventhProgressBar, sixthProgressBar, fifthProgressBar,
                 fourthProgressBar, thirdProgressBar, secondProgressBar, firstProgressBar)
+
         todayProgressText = findViewById(R.id.tv_today_progress)
+        todayProgressText!!.text = formatUsedAmount(0)
+
         todayMaxProgressText = findViewById(R.id.tv_max_progress)
     }
 
@@ -107,8 +111,8 @@ class QuiteTimeStats(context: Context, attrs: AttributeSet?) : ConstraintLayout(
         todayProgressText!!.text = formatUsedAmount(todayQuiteTimeProgress)
     }
 
-    private fun formatUsedAmount(usedAmount: Int): String {
-        return usedAmount.toString() + "m"
+    private fun formatUsedAmount(usedAmount: Int): SpannableString {
+        return TimeFormatter.formatRemainingMinutesMM(usedAmount)
     }
 
     private fun initializePreviousWeekData() {

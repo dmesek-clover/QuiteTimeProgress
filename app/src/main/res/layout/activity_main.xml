@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             tools:context=".SomeActivity">
 
-            <LinearLayout
+            <com.example.customprogressbar.remainingQuiteTime.QuiteTimeGroupTimer
                 android:id="@+id/ll_quite_time"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

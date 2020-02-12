@@ -42,26 +42,24 @@ class SomeActivity : AppCompatActivity() {
             quiteTimeStats.updateTodayProgress(Random.nextInt(0,120))
         }
 
-        val quiteTimeRV = findViewById(R.id.ll_quite_time) as LinearLayout
-        val quiteTimeRemainingAdapter = QuiteTimeGroupTimer(this, quiteTimeRV)
 
         val rqt = RemainingQuiteTime(
                 arrayListOf(QuiteTimeUser("User20", getResources().getDrawable(R.drawable.dummy7))),
                 6000)
-        quiteTimeRemainingAdapter.addQuiteTimeRemaining(rqt)
+        ll_quite_time.addQuiteTimeRemaining(rqt)
         //
-        quiteTimeRemainingAdapter.addAllQuiteTimeRemaining(Arrays.asList(
+        ll_quite_time.addAllQuiteTimeRemaining(Arrays.asList(
                 RemainingQuiteTime(
                         arrayListOf(
-                                QuiteTimeUser("User1 big userrr eee", getResources().getDrawable(R.drawable.dummy)),
-                                QuiteTimeUser("User1 ", getResources().getDrawable(R.drawable.dummy)),
-                                QuiteTimeUser("User1 ", getResources().getDrawable(R.drawable.dummy)),
-                                QuiteTimeUser("User1 ", getResources().getDrawable(R.drawable.dummy)),
-                                QuiteTimeUser("User2", getResources().getDrawable(R.drawable.dummy2)),
-                                QuiteTimeUser("User6", getResources().getDrawable(R.drawable.dummy3)),
-                                QuiteTimeUser("User6", getResources().getDrawable(R.drawable.dummy4)),
-                                QuiteTimeUser("User6", getResources().getDrawable(R.drawable.dummy5)),
-                                QuiteTimeUser("User6", getResources().getDrawable(R.drawable.dummy6))), 1000)
+                                QuiteTimeUser("User1 big userrr eee", resources.getDrawable(R.drawable.dummy)),
+                                QuiteTimeUser("User1 ", resources.getDrawable(R.drawable.dummy)),
+                                QuiteTimeUser("User1 ", resources.getDrawable(R.drawable.dummy)),
+                                QuiteTimeUser("User1 ", resources.getDrawable(R.drawable.dummy)),
+                                QuiteTimeUser("User2", resources.getDrawable(R.drawable.dummy2)),
+                                QuiteTimeUser("User6", resources.getDrawable(R.drawable.dummy3)),
+                                QuiteTimeUser("User6", resources.getDrawable(R.drawable.dummy4)),
+                                QuiteTimeUser("User6", resources.getDrawable(R.drawable.dummy5)),
+                                QuiteTimeUser("User6", resources.getDrawable(R.drawable.dummy6))), 1000)
 
                 //                new RemainingQuiteTime(
                 //                        Arrays.asList(new QuiteTimeUser("User4", getResources().getDrawable(R.drawable.circle))),
@@ -81,10 +79,4 @@ class SomeActivity : AppCompatActivity() {
 
     }
 
-
-    private fun reset() {
-        val intent = getIntent()
-        finish()
-        startActivity(intent)
-    }
 }

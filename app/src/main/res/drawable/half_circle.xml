@@ -7,8 +7,8 @@
             android:shape="oval">
 
             <gradient
-                android:startColor="@color/colorToolbarGradientStart"
-                android:endColor="@color/colorToolbarGradientEnd"
+                android:startColor="#5bc5a5"
+                android:endColor="#5aa6bf"
                 android:angle="0" />
 
         </shape>

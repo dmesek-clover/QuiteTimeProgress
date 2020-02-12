@@ -24,13 +24,15 @@
     <TextView
         android:id="@+id/title"
         android:layout_width="100dp"
-        android:layout_height="20dp"
+        android:layout_height="24dp"
         android:layout_marginTop="5dp"
         android:background="@drawable/button_background"
         android:textAllCaps="false"
         android:text="@string/stats"
+        android:textSize="13sp"
+        android:fontFamily="@font/sfuidisplay_semibold"
         android:gravity="center"
-        android:textColor="#000000"
+        android:textColor="#4a4a4a"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -51,7 +53,9 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="16dp"
+        android:textSize="14sp"
+        android:fontFamily="@font/sfuidisplay_regular"
         android:text="Your Quite Time stats"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -61,9 +65,9 @@
     <include
         android:id="@+id/pb_quite_time_today"
         layout="@layout/quite_time_today_progress_bar"
-        android:layout_width="180dp"
-        android:layout_height="180dp"
-        android:layout_marginTop="30dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="34dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -71,10 +75,10 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="55dp"
-        android:layout_marginEnd="45dp"
-        android:layout_marginBottom="55dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="50dp"
         android:orientation="vertical"
         android:weightSum="4"
         app:layout_constraintBottom_toBottomOf="@+id/pb_quite_time_today"
@@ -88,6 +92,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
+            android:textColor="#4c4c4c"
+            android:fontFamily="@font/sfuidisplay_regular"
             android:text="TODAY"
             android:textSize="16sp" />
 
@@ -98,14 +104,15 @@
             android:layout_weight="2"
             android:gravity="center"
             android:text="0m"
-            android:textColor="#000000"
-            android:textSize="25sp"
-            android:textStyle="bold" />
+            android:textColor="#4c4c4c"
+            android:fontFamily="@font/sfuidisplay_semibold"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/tv_max_progress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_regular"
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/max_progress_today"
@@ -116,7 +123,7 @@
         android:layout_width="0dp"
         android:layout_height="80dp"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="30dp"
         android:weightSum="7"
 

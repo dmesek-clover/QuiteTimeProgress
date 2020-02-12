@@ -23,6 +23,7 @@
         android:id="@+id/tv_day_of_week"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="16sp"
         android:text="S"
         app:layout_constraintBottom_toBottomOf="@+id/pb_quite_time_week"
         app:layout_constraintEnd_toEndOf="@+id/pb_quite_time_week"

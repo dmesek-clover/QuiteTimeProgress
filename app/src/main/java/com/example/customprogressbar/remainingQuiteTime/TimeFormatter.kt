@@ -11,7 +11,7 @@ object TimeFormatter {
     private const val secondsInHours = 3600
     private const val secondsInMinutes = 60
 
-    fun formatRemainingTime(secondsRemaining: Int): SpannableString {
+    fun formatRemainingSecondsHHmmSS(secondsRemaining: Int): SpannableString {
         val areDoubleDigits = arrayListOf<Boolean>()
         val hours = secondsRemaining / secondsInHours
         val minutes = secondsRemaining % secondsInHours / secondsInMinutes
@@ -30,6 +30,13 @@ object TimeFormatter {
         areDoubleDigits.add(seconds/10 > 0)
 
         return createSpannableString(formattedTime, areDoubleDigits)
+    }
+
+    fun formatRemainingMinutesMM(minutesRemaining: Int): SpannableString {
+        val minutesString = "${minutesRemaining}m"
+        return SpannableString(minutesString).apply {
+            setRelativeSizeSpan(0,minutesString.length - 1)
+        }
     }
 
     private fun createSpannableString(formattedTime: String, areDoubleDigits: List<Boolean>): SpannableString {

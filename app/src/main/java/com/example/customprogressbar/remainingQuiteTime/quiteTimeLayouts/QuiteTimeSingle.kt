@@ -11,18 +11,17 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.customprogressbar.R
 import com.example.customprogressbar.remainingQuiteTime.*
-import com.example.customprogressbar.remainingQuiteTime.QuiteTimeGridUserLayout
 import com.example.customprogressbar.remainingQuiteTime.dialogs.EndQuiteTimeDialog
 import com.example.customprogressbar.remainingQuiteTime.dialogs.EndQuiteTimeDialogListener
 import com.example.customprogressbar.remainingQuiteTime.models.QuiteTimeUser
 import com.example.customprogressbar.remainingQuiteTime.models.RemainingQuiteTime
 
 class QuiteTimeSingle(
-        context: AppCompatActivity,
+        context: Context,
         root: LinearLayout,
         layoutProvider: LayoutChangedListener,
         remainingQuiteTimeList: ArrayList<RemainingQuiteTime>
-) : QuiteTimeLayout(context, root, layoutProvider, remainingQuiteTimeList){
+) : QuiteTimeLayout(context, root, layoutProvider, remainingQuiteTimeList) {
 
     private val layoutInflater = LayoutInflater.from(context)
 
@@ -44,9 +43,9 @@ class QuiteTimeSingle(
     }
 
     private fun buildSingleUser(remainingQuiteTime: RemainingQuiteTime) {
-            val view = layoutInflater.inflate(R.layout.quite_time_single_remaining_item, null)
-            populateView(view, remainingQuiteTime)
-            root.addView(view)
+        val view = layoutInflater.inflate(R.layout.quite_time_single_remaining_item, null)
+        populateView(view, remainingQuiteTime)
+        root.addView(view)
     }
 
     private fun populateView(view: View, quiteTimeRemaining: RemainingQuiteTime) {
@@ -69,7 +68,8 @@ class QuiteTimeSingle(
                         gridLayout.deleteQuiteTimeUser(quiteTimeUser)
                     }
 
-                }).show(context.supportFragmentManager, "EndQuiteTimeDialog")
+                }).show(( context as AppCompatActivity).supportFragmentManager, "EndQuiteTimeDialog")
+                //TODO: notify listener
             }
         }
     }
@@ -78,10 +78,10 @@ class QuiteTimeSingle(
 
         var allowModification = true
 
-        override fun onTick(){
-            if(allowModification) {
+        override fun onTick() {
+            if (allowModification) {
                 quiteTimeRemaining.decrementSecondsRemainig()
-                remainingQuiteTime.text = TimeFormatter.formatRemainingTime(quiteTimeRemaining.secondsRemaining)
+                remainingQuiteTime.text = TimeFormatter.formatRemainingSecondsHHmmSS(quiteTimeRemaining.secondsRemaining)
                 allowModification = false
                 wait500ms()
             }
@@ -101,9 +101,9 @@ class QuiteTimeSingle(
             }.start()
         }
 
-        override fun onFinished(index: Int){
+        override fun onFinished(index: Int) {
             remainingQuiteTimeList.remove(quiteTimeRemaining)
-            layoutProvider.itemRemoved()
+            layoutListener.layoutChanged()
         }
 
         override fun isFinished() = quiteTimeRemaining.isFinished

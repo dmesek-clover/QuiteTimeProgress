@@ -1,10 +1,11 @@
 package com.example.customprogressbar.remainingQuiteTime
 
-import android.app.Activity
+import android.content.Context
 import android.util.AttributeSet
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.example.customprogressbar.R
 import com.example.customprogressbar.remainingQuiteTime.models.LayoutProviderState
 import com.example.customprogressbar.remainingQuiteTime.models.RemainingQuiteTime
 import com.example.customprogressbar.remainingQuiteTime.quiteTimeLayouts.QuiteTimeEmpty
@@ -12,24 +13,19 @@ import com.example.customprogressbar.remainingQuiteTime.quiteTimeLayouts.QuiteTi
 import com.example.customprogressbar.remainingQuiteTime.quiteTimeLayouts.QuiteTimeMultiple
 import com.example.customprogressbar.remainingQuiteTime.quiteTimeLayouts.QuiteTimeSingle
 
-interface LayoutChangedListener{
-    fun itemRemoved()
+interface LayoutChangedListener {
+    fun layoutChanged()
 }
 
-class QuiteTimeGroupTimer (
-        private val context: AppCompatActivity,
-        private val root: LinearLayout,
+class QuiteTimeGroupTimer(
+        private val ctx: Context,
         attrs: AttributeSet?
-) : ConstraintLayout(context, attrs), LayoutChangedListener{
+) : LinearLayout(ctx, attrs), LayoutChangedListener {
 
     private val quiteTimeRemainingList = arrayListOf<RemainingQuiteTime>()
 
     private var currentLayoutProviderState = LayoutProviderState.EMPTY
-    private var currentLayout: QuiteTimeLayout = QuiteTimeEmpty(context, root, this, quiteTimeRemainingList)
-
-    init {
-
-    }
+    private var currentLayout: QuiteTimeLayout = QuiteTimeEmpty(ctx, this, this, quiteTimeRemainingList)
 
     fun addQuiteTimeRemaining(element: RemainingQuiteTime) {
         quiteTimeRemainingList.add(element)
@@ -44,7 +40,7 @@ class QuiteTimeGroupTimer (
         quiteTimeRemainingListChanged()
     }
 
-    override fun itemRemoved() {
+    override fun layoutChanged() {
         quiteTimeRemainingListChanged()
     }
 
@@ -52,7 +48,7 @@ class QuiteTimeGroupTimer (
         currentLayoutProviderState.apply {
             val newState = LayoutProviderState.fromInt(quiteTimeRemainingList.size)
 
-            if(newState != this) {
+            if (newState != this) {
                 currentLayoutProviderState = newState
                 layoutProviderStateChanged()
             }
@@ -61,12 +57,12 @@ class QuiteTimeGroupTimer (
 
     private fun layoutProviderStateChanged() {
         currentLayout.detachLayout()
-        root.removeAllViews()
+        removeAllViews()
 
-        currentLayout = when(currentLayoutProviderState) {
-            LayoutProviderState.EMPTY -> QuiteTimeEmpty(context, root, this, quiteTimeRemainingList)
-            LayoutProviderState.SINGLE -> QuiteTimeSingle(context, root, this, quiteTimeRemainingList)
-            LayoutProviderState.MULTIPLE -> QuiteTimeMultiple(context, root, this, quiteTimeRemainingList)
+        currentLayout = when (currentLayoutProviderState) {
+            LayoutProviderState.EMPTY -> QuiteTimeEmpty(ctx, this, this, quiteTimeRemainingList)
+            LayoutProviderState.SINGLE -> QuiteTimeSingle(ctx, this, this, quiteTimeRemainingList)
+            LayoutProviderState.MULTIPLE -> QuiteTimeMultiple(ctx, this, this, quiteTimeRemainingList)
         }
     }
 
