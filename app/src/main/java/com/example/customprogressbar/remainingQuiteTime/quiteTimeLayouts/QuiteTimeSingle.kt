@@ -57,7 +57,7 @@ class QuiteTimeSingle(
         QuiteTimeTimer.subscribeToTimer(timerListener)
 
         val gridLayout = QuiteTimeGridUserLayout(context, gridUsers,
-                quiteTimeRemaining.quiteTimeUsers, R.layout.quite_time_single_user_item)
+                quiteTimeRemaining.quiteTimeUsers, R.layout.quite_time_user_item)
 
         stopButton.setOnClickListener {
             if (quiteTimeRemaining.quiteTimeUsers.size == 1) {

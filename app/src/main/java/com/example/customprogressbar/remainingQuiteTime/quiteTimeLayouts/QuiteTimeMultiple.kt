@@ -63,7 +63,7 @@ class QuiteTimeMultiple(
         QuiteTimeTimer.subscribeToTimer(timerListener)
 
         val gridLayout = QuiteTimeGridUserLayout(context, gridUsers,
-                quiteTimeRemaining.quiteTimeUsers, R.layout.quite_time_multiple_user_item)
+                quiteTimeRemaining.quiteTimeUsers, R.layout.quite_time_user_item)
 
         stopImage.setup(quiteTimeRemaining, gridLayout)
     }
