@@ -7,7 +7,7 @@ enum class LayoutProviderState {
         fun fromInt(value: Int): LayoutProviderState {
             return when(value) {
                 0 -> EMPTY
-                1 -> SINGLE
+                //1 -> SINGLE
                 else -> MULTIPLE
             }
         }

@@ -3,7 +3,6 @@ package com.example.customprogressbar
 import android.graphics.Rect
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -37,6 +36,7 @@ class SomeActivity : AppCompatActivity() {
                 if (ll_progress_bar_holder.getLocalVisibleRect(scrollBounds) && !wasAnimated) {
                     wasAnimated = true
                     Handler().postDelayed({ quite_time_stats_layout.animateWeekProgress() }, 300)
+                    Handler().postDelayed({ quite_time_stats_layout.updateTodayProgress(50) }, 300)
                 }
             }
         }
@@ -52,7 +52,6 @@ class SomeActivity : AppCompatActivity() {
                 QuiteTime(120, 60, null),
                 QuiteTime(120, 120, null),
                 QuiteTime(120, 80, null)))
-
 
         button2.setOnClickListener {
             quite_time_stats_layout.updateTodayProgress(Random.nextInt(0, 120))
@@ -72,7 +71,7 @@ class SomeActivity : AppCompatActivity() {
                                 QuiteTimeUser("User6", resources.getDrawable(R.drawable.dummy3)),
                                 QuiteTimeUser("User6", resources.getDrawable(R.drawable.dummy4)),
                                 QuiteTimeUser("User6", resources.getDrawable(R.drawable.dummy5)),
-                                QuiteTimeUser("User6", resources.getDrawable(R.drawable.dummy6))), 1000)
+                                QuiteTimeUser("User6", resources.getDrawable(R.drawable.dummy6))), 10000)
 
                 //                new RemainingQuiteTime(
                 //                        Arrays.asList(new QuiteTimeUser("User4", getResources().getDrawable(R.drawable.circle))),

@@ -58,6 +58,7 @@ class QuiteTimeGroupTimer(
 
         currentLayout = when (currentLayoutProviderState) {
             LayoutProviderState.EMPTY -> QuiteTimeEmpty(ctx, this, this, quiteTimeRemainingList)
+            //unnecessary for now
             LayoutProviderState.SINGLE -> QuiteTimeSingle(ctx, this, this, quiteTimeRemainingList)
             LayoutProviderState.MULTIPLE -> QuiteTimeMultiple(ctx, this, this, quiteTimeRemainingList)
         }

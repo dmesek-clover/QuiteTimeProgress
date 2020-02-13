@@ -31,12 +31,15 @@ class EndQuiteTimeAdapter(
             name.text = userList[position].name
             stop.setOnClickListener {
                 listener.removePressed(userList[position])
-                notifyDataSetChanged()
-                if(userList.size == 1) {
+//                notifyDataSetChanged()
+                if (userList.size == 1) {
                     dismissListener.run()
+                } else {
+                    notifyItemRemoved(position)
+                    notifyItemRangeChanged(position, userList.size)
                 }
             }
-            if(position == userList.size - 1) {
+            if (position == userList.size - 1) {
                 separator.visibility = View.GONE
             } else {
                 separator.visibility = View.VISIBLE
