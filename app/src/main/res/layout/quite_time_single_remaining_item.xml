@@ -47,8 +47,6 @@
         <TextView
             android:id="@+id/tv_remaining_quite_time"
             android:lines="1"
-            android:autoSizeMinTextSize="10sp"
-            android:autoSizeMaxTextSize="20sp"
             android:autoSizeTextType="uniform"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -57,7 +55,7 @@
             android:paddingEnd="5dp"
             android:text=""
             android:textColor="#5BC5BC"
-            android:textSize="20sp" />
+            android:textSize="@dimen/text_size" />
 
     </LinearLayout>
 

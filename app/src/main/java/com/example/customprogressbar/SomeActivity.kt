@@ -71,7 +71,7 @@ class SomeActivity : AppCompatActivity() {
                                 QuiteTimeUser("User6", resources.getDrawable(R.drawable.dummy3)),
                                 QuiteTimeUser("User6", resources.getDrawable(R.drawable.dummy4)),
                                 QuiteTimeUser("User6", resources.getDrawable(R.drawable.dummy5)),
-                                QuiteTimeUser("User6", resources.getDrawable(R.drawable.dummy6))), 10000)
+                                QuiteTimeUser("User6", resources.getDrawable(R.drawable.dummy6))), 100000)
 
                 //                new RemainingQuiteTime(
                 //                        Arrays.asList(new QuiteTimeUser("User4", getResources().getDrawable(R.drawable.circle))),
