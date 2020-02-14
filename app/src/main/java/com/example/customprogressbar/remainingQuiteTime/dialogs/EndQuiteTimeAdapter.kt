@@ -11,7 +11,7 @@ import com.example.customprogressbar.remainingQuiteTime.models.QuiteTimeUser
 
 class EndQuiteTimeAdapter(
         private val userList: List<QuiteTimeUser>,
-        private val listener: EndQuiteTimeDialogListener,
+        private val listener: QuiteTimeRemovedListener,
         private val dismissListener: Runnable
 
 ) : RecyclerView.Adapter<EndQuiteTimeAdapter.ViewHolder>() {

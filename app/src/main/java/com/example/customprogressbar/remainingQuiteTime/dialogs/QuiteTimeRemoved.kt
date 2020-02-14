@@ -11,14 +11,14 @@ import com.example.customprogressbar.R
 import com.example.customprogressbar.remainingQuiteTime.models.QuiteTimeUser
 
 
-interface EndQuiteTimeDialogListener {
+interface QuiteTimeRemovedListener {
     fun removePressed(quiteTimeUser: QuiteTimeUser)
 }
 
-class EndQuiteTimeDialog(
+class QuiteTimeRemoved(
         private val userList: List<QuiteTimeUser>,
-        private val listener: EndQuiteTimeDialogListener
-) : DialogFragment(), EndQuiteTimeDialogListener {
+        private val listener: QuiteTimeRemovedListener
+) : DialogFragment(), QuiteTimeRemovedListener {
 
     override fun removePressed(quiteTimeUser: QuiteTimeUser) {
         listener.removePressed(quiteTimeUser)

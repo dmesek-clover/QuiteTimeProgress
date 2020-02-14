@@ -7,8 +7,8 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.customprogressbar.R
 import com.example.customprogressbar.remainingQuiteTime.*
-import com.example.customprogressbar.remainingQuiteTime.dialogs.EndQuiteTimeDialog
-import com.example.customprogressbar.remainingQuiteTime.dialogs.EndQuiteTimeDialogListener
+import com.example.customprogressbar.remainingQuiteTime.dialogs.QuiteTimeRemoved
+import com.example.customprogressbar.remainingQuiteTime.dialogs.QuiteTimeRemovedListener
 import com.example.customprogressbar.remainingQuiteTime.models.QuiteTimeUser
 import com.example.customprogressbar.remainingQuiteTime.models.RemainingQuiteTime
 
@@ -73,7 +73,7 @@ class QuiteTimeMultiple(
             if (quiteTimeRemaining.quiteTimeUsers.size == 1) {
                 quiteTimeRemaining.stopped = true
             } else {
-                EndQuiteTimeDialog(quiteTimeRemaining.quiteTimeUsers, object : EndQuiteTimeDialogListener {
+                QuiteTimeRemoved(quiteTimeRemaining.quiteTimeUsers, object : QuiteTimeRemovedListener {
                     override fun removePressed(quiteTimeUser: QuiteTimeUser) {
                         gridLayout.deleteQuiteTimeUser(quiteTimeUser)
                     }
